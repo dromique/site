@@ -23,17 +23,17 @@ const CardStack: React.FC<CardStackProps> = ({
   brandingTitle = "Branding",
 }) => {
   return (
-    <div className="w-full max-w-7xl h-[450px] justify-center flex flex-col md:flex-row bg-black rounded-2xl p-6 md:p-10 mx-auto gap-8">
+    <div className="w-full max-w-7xl h-[450px] justify-center flex flex-col md:flex-row bg-[#333333] rounded-2xl p-6 md:p-10 mx-auto gap-8">
       {/* Left Side /}
       <div className="flex-1 flex flex-col gap-4 min-w-[300px]">
-        <h1 className="font-KronaOne md:text-5xl text-4xl w-max">{title}</h1>
-        <h2 className="font-KronaOne text-2xl">{subtitle}</h2>
-        <p className="text-gray-300 text-base md:text-lg mb-6 leading-relaxed font-RobotoCondensed">
+        <h1 className="font-KronaOne md:text-5xl text-4xl w-max text-[#C26E4B]">{title}</h1>
+        <h2 className="font-KronaOne text-2xl text-[#C26E4B]">{subtitle}</h2>
+        <p className="text-[#F7EDE1] text-base md:text-lg mb-6 leading-relaxed font-RobotoCondensed">
           {description}
         </p>
         <Link
           href={buttonLink}
-          className="bg-green-500 text-black cursor-pointer rounded-lg text-xl font-KronaOne flex justify-center items-center w-max px-10 py-3 mt-auto"
+          className="bg-[#C26E4B] text-[#F7EDE1] cursor-pointer rounded-lg text-xl font-KronaOne flex justify-center items-center w-max px-10 py-3 mt-auto hover:bg-[#a85e41] transition-colors"
         >
           {buttonText}
         </Link>
@@ -41,7 +41,7 @@ const CardStack: React.FC<CardStackProps> = ({
 
       {/ Right Side */}
       <div className="flex flex-col gap-4 basis-1/2 min-w-[320px]">
-        <h1 className="md:text-5xl sm:text-4xl text-3xl font-KronaOne wrap-break-word min-w-[250px] md:min-w-[320px]">
+        <h1 className="md:text-5xl sm:text-4xl text-3xl font-KronaOne wrap-break-word min-w-[250px] md:min-w-[320px] text-[#C26E4B]">
           {brandingTitle}
         </h1>
         <div className="w-full flex justify-center items-center"></div>
