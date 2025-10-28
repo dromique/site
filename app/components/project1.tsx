@@ -1,0 +1,10 @@
+export default function Project1() {
+    return (
+        <section className="h-screen flex items-center justify-center bg-[#F7EDE1]">
+            <div className="text-center">
+                <h2 className="text-4xl font-bold text-[#C26E4B]">Project 1</h2>
+                <p className="mt-4 text-[#333333]">Section content here</p>
+            </div>
+        </section>
+    );
+}
