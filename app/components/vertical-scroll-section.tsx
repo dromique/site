@@ -14,9 +14,9 @@ const cards = [
     description:
       "Voor dit project heb ik een branding gemaakt voor Boris Schmidt. Boris studeert aan de Rockacademie. Gedurende 4 weken heb ik samen met mijn groep verschillende producten gemaakt voor Boris. Denk aan een moodboard, stylescape, logo, brandguide en content strategie.",
     buttonText: "Lees Meer",
-    buttonLink: "/projects/branding",
+    buttonLink: "/project1",
     brandingTitle: "Boris Schmidt",
-    brandingImage: "/images/card1folderinside.svg",
+    brandingImage: "#",
     fileColor: "#fff",
   },
   {
@@ -25,9 +25,9 @@ const cards = [
     description:
       "Voor dit project heb ik samen met mijn groepsgenoten een UX-design gemaakt voor Cardan. Cardan is een bedrijf dat zich richt op het verbeteren van de toegankelijkheid van websites.",
     buttonText: "Lees Meer",
-    buttonLink: "/projects/cardan",
+    buttonLink: "/project2",
     brandingTitle: "Cardan",
-    brandingImage: "images/Cardanlogo.svg",
+    brandingImage: "#",
     fileColor: "#333333",
   },
   {
@@ -36,32 +36,11 @@ const cards = [
     description:
       "Dit project gaat over de development van project 2: Create That UX. In dit project heb ik samen met mijn groepsgenoten gewerkt aan het coderen en ontwikkelen van de ontworpen UX uit project 2.",
     buttonText: "Lees Meer",
-    buttonLink: "/projects/development",
+    buttonLink: "/project3",
     brandingTitle: "Project X",
-    brandingImage: "images/Cardanlogo.svg",
+    brandingImage: "#",
     fileColor: "#654E6F",
   },
-  // {
-  //   title: "Project 4",
-  //   subtitle: "Portfolio",
-  //   description:
-  //     "Dit project draait om mijn portfolio. Hierin beschrijf ik hoe ik tot mijn portfolio ben gekomen, wat ik ervoor heb ontworpen en hoe ik mezelf beter heb leren kennen op het gebied van mijn waarden.",
-  //   buttonText: "Lees Meer",
-  //   buttonLink: "/projects/portfolio",
-  //   brandingTitle: "Luuk Steijaert",
-  //   fileColor: "#00c951",
-  // },
-  // {
-  //   title: "Project 5",
-  //   subtitle: "Project X",
-  //   description:
-  //     "Bij dit project mag ik zelf een project kiezen. Ik heb gekozen na wat nadenken en bespreken samen met mijn docent om een project te maken in Blender. Ik ga de boulder grepen namelijk maken in 3D om deze te kunnen plaatsen op mijn website.",
-  //   buttonText: "Lees Meer",
-  //   buttonLink: "/projects/project-x",
-  //   brandingTitle: "Blender",
-  //   brandingImage: "images/Blenderlogo.png",
-  //   fileColor: "#eb7700",
-  // },
 ];
 
 export default function VerticalScrollSection() {
