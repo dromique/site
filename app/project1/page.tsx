@@ -1,3 +1,8 @@
+import Header from "../components/header";
+import Footer from "../components/footer";
+
+<Header />
+
 export default function Project1() {
     return (
         <section className="h-screen flex items-center justify-center bg-[#F7EDE1]">
@@ -8,3 +13,5 @@ export default function Project1() {
         </section>
     );
 }
+
+<Footer />
