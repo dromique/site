@@ -11,8 +11,7 @@ const cards = [
   {
     title: "Project 1",
     subtitle: "Brand guide",
-    description:
-      "Voor dit project heb ik een branding gemaakt voor Boris Schmidt. Boris studeert aan de Rockacademie. Gedurende 4 weken heb ik samen met mijn groep verschillende producten gemaakt voor Boris. Denk aan een moodboard, stylescape, logo, brandguide en content strategie.",
+    description: "Description of the project goes here.",
     buttonText: "Lees Meer",
     buttonLink: "/project1",
     brandingTitle: "Boris Schmidt",
@@ -22,8 +21,7 @@ const cards = [
   {
     title: "Project 2",
     subtitle: "Experience playground",
-    description:
-      "Voor dit project heb ik samen met mijn groepsgenoten een UX-design gemaakt voor Cardan. Cardan is een bedrijf dat zich richt op het verbeteren van de toegankelijkheid van websites.",
+    description: "Description of the project goes here.",
     buttonText: "Lees Meer",
     buttonLink: "/project2",
     brandingTitle: "Cardan",
@@ -33,8 +31,7 @@ const cards = [
   {
     title: "Project 3",
     subtitle: "Pong",
-    description:
-      "Dit project gaat over de development van project 2: Create That UX. In dit project heb ik samen met mijn groepsgenoten gewerkt aan het coderen en ontwikkelen van de ontworpen UX uit project 2.",
+    description: "Description of the project goes here.",
     buttonText: "Lees Meer",
     buttonLink: "/project3",
     brandingTitle: "Project X",

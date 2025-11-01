@@ -1,36 +1,35 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Showcase Portfolio
 
-## Getting Started
+## Over dit project
+Dit project is mijn persoonlijke **showcase portfolio**, ontwikkeld in **Next.js**, **Tailwind CSS** en **GSAP**.  
+Het doel van dit portfolio is om mijn projecten, skills en creativiteit te tonen aan potentiële stagebegeleiders en werkgevers.  
 
-First, run the development server:
+Het project bevat:
+- Interactieve projectcards met animaties.
+- Responsive design dat geschikt is voor desktop en mobiel.
+- Een rustige, gezellige "cozy autumn" stijl voor consistentie en sfeer.
 
-```bash
+## Technologieën
+- **Next.js** – Framework voor React-gebaseerde webapplicaties.
+- **Tailwind CSS** – Utility-first CSS framework voor snelle styling.
+- **GSAP** – Animaties en transitions voor interactieve elementen.
+- **VS Code** – Ontwikkelomgeving.
+
+## Installatie
+1. Clone de repository:
+git clone https://git.fhict.nl/I538263/showcase-portfolio-s3.git
+2. Ga naar de projectmap:
+cd showcase-portfolio-s3
+3. Installeer de dependencies:
+npm install
+4. Start de ontwikkelserver:
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+5. Open vervolgens in je browser:
+http://localhost:3000
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Hoe het werkt
+- De Home page toont een overzicht van projecten met interactieve cards.
+- De Project page bevat uitgebreide informatie over elk project.
+- Animaties zijn toegevoegd met GSAP voor soepele overgangen en visuele dynamiek.
+- Styling en responsive layout zijn gerealiseerd met Tailwind CSS.
+- De site is gebouwd in Next.js en draait lokaal via npm run dev.

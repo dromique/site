@@ -17,7 +17,7 @@ interface CardStackProps {
 const CardStack: React.FC<CardStackProps> = ({
   title = "Project 1",
   subtitle = "Boris Schmidt",
-  description = "Voor dit project heb ik een branding gemaakt voor Boris Schmidt...",
+  description = "Description of the project goes here.",
   buttonText = "Lees Meer",
   buttonLink = "/project1",
   brandingTitle = "Branding",
