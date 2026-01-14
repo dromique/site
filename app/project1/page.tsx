@@ -1,17 +1,16 @@
-import Header from "../components/header";
-import Footer from "../components/footer";
-
-<Header />
+import AnimatedBird from "../components/animated-bird";
+import AboveTheFold from "../components/above-the-fold";
 
 export default function Project1() {
     return (
-        <section className="h-screen flex items-center justify-center bg-[#F7EDE1]">
-            <div className="text-center">
-                <h2 className="text-4xl font-bold text-[#C26E4B] font-lora">Project 1</h2>
-                <p className="mt-4 text-[#333333] font-inter">Section content here</p>
-            </div>
-        </section>
+        <div className="bg-zinc-50 font-sans dark:bg-black">
+            <main className="w-full">
+                <AboveTheFold 
+                    title="Project 1" 
+                    subtitle="Project 1 beschrijving hier"
+                    bird={<AnimatedBird src="/img/bird2/bird2.png" alt="Bird decoration" width={576} height={505} />}
+                />
+            </main>
+        </div>
     );
 }
-
-<Footer />

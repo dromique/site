@@ -1,10 +1,104 @@
-export default function AboveTheFold() {
+'use client';
+
+import { useEffect, useRef, useState, ReactNode } from 'react';
+import ParticleAnimation from './particle-animation';
+
+interface AboveTheFoldProps {
+  title: string;
+  subtitle: string;
+  bird?: ReactNode;
+}
+
+export default function AboveTheFold({ title, subtitle, bird }: AboveTheFoldProps) {
+  const audioRef = useRef<HTMLAudioElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const fadeIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const [hasInteracted, setHasInteracted] = useState(false);
+  const observerRef = useRef<IntersectionObserver | null>(null);
+
+  const fadeIn = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    
+    if (fadeIntervalRef.current) clearInterval(fadeIntervalRef.current);
+    
+    audio.volume = 0;
+    const playPromise = audio.play();
+    
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          let volume = 0;
+          fadeIntervalRef.current = setInterval(() => {
+            if (volume < 1) {
+              volume += 0.05;
+              audio.volume = Math.min(volume, 1);
+            } else {
+              if (fadeIntervalRef.current) clearInterval(fadeIntervalRef.current);
+            }
+          }, 50);
+        })
+        .catch((error) => console.log('Audio play failed:', error));
+    }
+  };
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section || !hasInteracted) return;
+
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            fadeIn();
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    observerRef.current.observe(section);
+    
+    // Start audio immediately if section is visible
+    fadeIn();
+
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+      if (fadeIntervalRef.current) clearInterval(fadeIntervalRef.current);
+    };
+  }, [hasInteracted]);
+
+  const handleInteraction = () => {
+    setHasInteracted(true);
+  };
+
   return (
-    <section className="h-screen flex items-center justify-start px-8 bg-[#F7EDE1]">
+    <section ref={sectionRef} className="h-screen flex items-center justify-start px-8 bg-[#F7EDE1] relative overflow-hidden">
+      <ParticleAnimation />
+      <audio 
+        ref={audioRef} 
+        loop
+        preload="auto"
+        muted={false}
+        crossOrigin="anonymous"
+      >
+        <source src="/sound/683399__joker313__robin2.wav" type="audio/wav" />
+      </audio>
       <div className="text-start">
-        <h2 className="text-4xl font-bold text-[#C26E4B] font-lora">Dominique van Waardhuizen</h2>
-        <p className="mt-4 text-[#333333] font-inter">Student ICT media design</p>
+        <h2 className="text-4xl font-bold text-[#C26E4B] font-lora">{title}</h2>
+        <p className="mt-4 text-[#333333] font-inter">{subtitle}</p>
+        {!hasInteracted && (
+          <button
+            onClick={handleInteraction}
+            className="mt-6 px-6 py-2 bg-[#C26E4B] text-white rounded-lg hover:bg-[#A85A3B] transition-colors"
+          >
+            Start
+          </button>
+        )}
       </div>
+      {bird}
     </section>
   );
 }
