@@ -12,6 +12,8 @@ export default function Home() {
           title="Dominique van Waardhuizen" 
           subtitle="Student ICT media design"
           bird={<AnimatedBird src="/img/bird1/bird1base.png" alt="Bird decoration" width={480} height={547} />}
+          beak={<AnimatedBird src="/img/bird1/bird1Underbeak.png" alt="Bird beak decoration" width={480} height={547} />}
+          wings={<AnimatedBird src="/img/bird1/bird1wing.png" alt="Bird wing decoration" width={480} height={547} />}
         />
         <Whoami />
         <VerticalScrollSection />

@@ -7,9 +7,11 @@ interface AboveTheFoldProps {
   title: string;
   subtitle: string;
   bird?: ReactNode;
+  beak?: ReactNode;
+  wings?: ReactNode;
 }
 
-export default function AboveTheFold({ title, subtitle, bird }: AboveTheFoldProps) {
+export default function AboveTheFold({ title, subtitle, bird, beak, wings }: AboveTheFoldProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
   const fadeIntervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -99,6 +101,8 @@ export default function AboveTheFold({ title, subtitle, bird }: AboveTheFoldProp
         )}
       </div>
       {bird}
+      {beak}
+      {wings}
     </section>
   );
 }
