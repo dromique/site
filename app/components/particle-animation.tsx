@@ -32,10 +32,10 @@ export default function ParticleAnimation() {
     // Generate initial particles with sequential staggering to prevent overlap
     const initialParticles: Particle[] = Array.from({ length: 8 }, (_, i) => ({
       id: i,
-      duration: Math.random() * 4 + 8, // 8-12 seconds (slower)
+      duration: Math.random() * 4 + 8, // 8-12 seconds
       delay: i * 0.6, // Sequential stagger: 0s, 0.6s, 1.2s, etc.
       amplitude: Math.random() * 60 + 30, // 30-90px wave amplitude
-      frequency: Math.random() * 3 + 2, // 2-5 oscillations
+      frequency: Math.random() * 1 , // 1-2 oscillations
       noteImage: Math.floor(Math.random() * NOTE_IMAGES.length),
     }));
     setParticles(initialParticles);
@@ -48,7 +48,7 @@ export default function ParticleAnimation() {
           duration: Math.random() * 4 + 8,
           delay: 0.6, // Minimum delay to prevent immediate overlap
           amplitude: Math.random() * 60 + 30,
-          frequency: Math.random() * 3 + 2,
+          frequency: Math.random() * 1 , // 1-2 oscillations
           noteImage: Math.floor(Math.random() * NOTE_IMAGES.length),
         };
         return [...prev, newParticle];
@@ -63,8 +63,8 @@ export default function ParticleAnimation() {
       <style>{`
         @keyframes particleFloat {
           0% {
-            right: 2.5vw;
-            top: 0;
+            right: 30vw;
+            top: 25vh;
             opacity: 1;
           }
           100% {
@@ -109,8 +109,8 @@ export default function ParticleAnimation() {
           key={particle.id}
           className={`particle-${particle.id} absolute`}
           style={{
-            right: '2.5vw',
-            top: '0',
+            right: '30vw',
+            top: '25vh',
             width: '40px',
             height: '40px',
           }}

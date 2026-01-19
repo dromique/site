@@ -8,6 +8,9 @@ Het project bevat:
 - Interactieve projectcards met animaties.
 - Responsive design dat geschikt is voor desktop en mobiel.
 - Een rustige, gezellige "cozy autumn" stijl voor consistentie en sfeer.
+- **Animerend roodborstje** dat in de header op en neer hopt.
+- **Vogelgefluit** die automatisch afspeelt bij interactie.
+- **Muzieknoten** die uit de snavel van het roodborstje komen tijdens het zingen.
 
 ## Technologieën
 - **Next.js** – Framework voor React-gebaseerde webapplicaties.
@@ -33,3 +36,14 @@ http://localhost:3000
 - Animaties zijn toegevoegd met GSAP voor soepele overgangen en visuele dynamiek.
 - Styling en responsive layout zijn gerealiseerd met Tailwind CSS.
 - De site is gebouwd in Next.js en draait lokaal via npm run dev.
+
+## Interactieve Elementen
+### Animerend Roodborstje
+- Een geanimeerd roodborstje hopt op en neer in de header.
+- Het roodborstje heeft meerdere componenten zodat deze later kunnen bewegen.
+- Bij klikken op de start button(user interaction) spelen er vogelgeluiden af.
+
+### Audio & Muzieknoten
+- De site bevat achtergrondmuziek die geactiveerd wordt bij gebruikersinteractie.
+- Tijdens het afspelen verschijnen er muzieknoten die uit de snavel van het roodborstje komen.
+- De noten animeren omhoog met een natuurlijke zweefbeweging en fade-out effect.
