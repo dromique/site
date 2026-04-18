@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Whoami() {
   return (
@@ -9,6 +10,12 @@ export default function Whoami() {
           <p className="mt-4 text-[#F7EDE1] font-inter text-justify leading-relaxed">
             Ik ben een student ICT & Media Design aan Fontys Hogescholen en momenteel bezig met mijn vierde semester, waarin ik me richt op Media Creation. Mijn interesse ligt in het ontwerpen en bouwen van digitale producten, van idee tot uitvoering. Ik vind het motiverend om te zien hoe een concept tot leven komt op het scherm en kijk ernaar uit om mijn kennis en vaardigheden verder te ontwikkelen binnen dit vakgebied.
           </p>
+          <Link
+            href="/cv"
+            className="mt-6 inline-flex items-center rounded-lg bg-[#C26E4B] px-6 py-3 font-lora text-[#F7EDE1] transition-colors hover:bg-[#a85e41]"
+          >
+            Bekijk mijn CV
+          </Link>
         </div>
 
         <div className="w-full max-w-[320px] md:w-[320px] md:shrink-0">

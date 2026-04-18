@@ -10,7 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 const cards = [
         {
     title: "Flight Of The Silverbird",
-    subtitle: "Interactive visuals",
+    subtitle: "Interactive visuals - Semester 4",
     description: "Een huidig project waarbij ik in groepsverband interactieve visuals maak voor het opkomende optreden van Harmonie L'Union Fraternelle. De visuals worden gemaakt met DaVinci Resolve en Vertex",
     buttonText: "Kom naar het optreden op 31 mei",
     buttonLink: "https://www.deschalm.com/nl/programma/harmonie-slagwerkgroep-l-union-fraternelle-j3ts",
@@ -19,17 +19,17 @@ const cards = [
   },
         {
     title: "Calyx Media",
-    subtitle: "Brand guide",
-description: "Samen met vier andere studenten hebben wij een brand guide gemaakt voor Calyx Media, een media agency dat wij hebben opgericht als onderdeel van onze opleiding.",
-    buttonText: "Wat is Calyx Media?",
+    subtitle: "Brand guide - Semester 4",
+description: "Samen met vier andere studenten heb ik een brand guide gemaakt voor Calyx Media, een media agency dat wij hebben opgericht als onderdeel van onze opleiding. Ik heb mij voornamelijk gericht op het onderzoeken en onderbouwen van het merk.",
+    buttonText: "Ontdek Calyx Media",
     buttonLink: "/brandguideS3",
     brandingImage: "/img/projectCoverImages/brandguideS3.png",
     fileColor: "#fff",
   },
       {
     title: "Tamafishy",
-    subtitle: "Flipdot display",
-    description: "Een Tamagotchi gemaakt voor een flipdot display. Tamafishy is gemaakt om de werknemers in het kantoor van OWOW te stimuleren om taken te voltooien op een interactieve manier.",
+    subtitle: "Flipdot display - Semester 3",
+    description: "Een Tamagotchi gemaakt in groepsverband voor een flipdot display. Tamafishy is gemaakt om de werknemers in het kantoor van OWOW te stimuleren om taken te voltooien op een interactieve manier.",
     buttonText: "Zeg hallo tegen Tamafishy",
     buttonLink: "#",
     brandingImage: "/img/projectCoverImages/tamafishyS3.png",
@@ -37,8 +37,8 @@ description: "Samen met vier andere studenten hebben wij een brand guide gemaakt
   },
     {
     title: "City at night",
-    subtitle: "School portfolio",
-    description: "Een portfolio om bewijsstukken te leveren voor school, gemaakt voor mijn 2e semester.",
+    subtitle: "School portfolio - Semester 2",
+    description: "Een portfolio om bewijsstukken te leveren voor school.",
     buttonText: "Bekijk Portfolio",
     buttonLink: "https://i538263.hera.fontysict.net/portfolio/",
     brandingImage: "/img/projectCoverImages/portfolioS2.png",
@@ -46,8 +46,8 @@ description: "Samen met vier andere studenten hebben wij een brand guide gemaakt
   },
   {
     title: "Pong",
-    subtitle: "Project X",
-    description: "Als project X in semester 2 heb ik een astetische versie van Pong gemaakt.",
+    subtitle: "Project X - Semester 2",
+    description: "Als project X heb ik een astetische versie van Pong gemaakt.",
     buttonText: "Speel Pong",
     buttonLink: "https://i538263.hera.fontysict.net/pong/",
     brandingImage: "/img/projectCoverImages/pongS2.png",
@@ -55,7 +55,7 @@ description: "Samen met vier andere studenten hebben wij een brand guide gemaakt
   },
   {
     title: "Verfwereld",
-    subtitle: "Experience playground",
+    subtitle: "Experience playground - Semester 2",
     description: "Voor stakeholder Cardan heb ik in groepsverband een experience playground gemaakt, genaamd Verfwereld. Waar de gebruiker met filters een simulatie kan starten waarin naarvoren komt hoe een gebruikers onvriendelijke website is voor mensen met een visuele beperking.",
     buttonText: "Ervaar Verfwereld",
     buttonLink: "https://i538263.hera.fontysict.net/cardan-dev/",
@@ -63,8 +63,8 @@ description: "Samen met vier andere studenten hebben wij een brand guide gemaakt
     fileColor: "#333333",
   },
   {
-    title: "Brand guide",
-    subtitle: "Boris Schmidt",
+    title: "Boris Schmidt",
+    subtitle: "Brand guide - Semester 2",
     description: "Een brand guide gemaakt in groepsverband voor de artiest Boris Schmidt.",
     buttonText: "Bekijk Brand Guide",
     buttonLink: "/brandguideS2",
