@@ -40,7 +40,7 @@ const cards = [
     subtitle: "Boris Schmidt",
     description: "Een brand guide gemaakt in groepsverband voor de artiest Boris Schmidt.",
     buttonText: "Bekijk Brand Guide",
-    buttonLink: "#",
+    buttonLink: "/brandguideS2",
     brandingImage: "/img/projectCoverImages/brandguideS2.png",
     fileColor: "#654E6F",
   },
@@ -110,7 +110,7 @@ export default function VerticalScrollSection() {
               description={card.description}
               buttonText={card.buttonText}
               buttonLink={card.buttonLink}
-              brandingTitle={card.brandingTitle}
+              // brandingTitle={card.brandingTitle}
               brandingImage={card.brandingImage}
               fileColor={card.fileColor}
             />
