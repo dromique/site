@@ -8,11 +8,38 @@ import CardStack from "./cardStack";
 gsap.registerPlugin(ScrollTrigger);
 
 const cards = [
+        {
+    title: "Flight Of The Silverbird",
+    subtitle: "Interactive visuals",
+    description: "Een huidig project waarbij ik in groepsverband interactieve visuals maak voor het opkomende optreden van Harmonie L'Union Fraternelle. De visuals worden gemaakt met DaVinci Resolve en Vertex",
+    buttonText: "Coming soon",
+    buttonLink: "#",
+    brandingImage: "/img/projectCoverImages/tamafishyS3.png",
+    fileColor: "#fff",
+  },
+        {
+    title: "Calyx Media",
+    subtitle: "Brand guide",
+description: "Samen met vier andere studenten hebben wij een brand guide gemaakt voor Calyx Media, een media agency dat wij hebben opgericht als onderdeel van onze opleiding.",
+    buttonText: "Wat is Calyx Media?",
+    buttonLink: "#",
+    brandingImage: "/img/projectCoverImages/tamafishyS3.png",
+    fileColor: "#fff",
+  },
+      {
+    title: "Tamafishy",
+    subtitle: "Flipdot display",
+    description: "Een Tamagotchi gemaakt voor een flipdot display. Tamafishy is gemaakt om de werknemers in het kantoor van OWOW te stimuleren om taken te voltooien op een interactieve manier.",
+    buttonText: "Zeg hallo tegen Tamafishy",
+    buttonLink: "#",
+    brandingImage: "/img/projectCoverImages/tamafishyS3.png",
+    fileColor: "#fff",
+  },
     {
     title: "City at night",
     subtitle: "School portfolio",
     description: "Een portfolio om bewijsstukken te leveren voor school, gemaakt voor mijn 2e semester.",
-    buttonText: "Zie Portfolio",
+    buttonText: "Bekijk Portfolio",
     buttonLink: "https://i538263.hera.fontysict.net/portfolio/",
     brandingImage: "/img/projectCoverImages/portfolioS2.png",
     fileColor: "#fff",
