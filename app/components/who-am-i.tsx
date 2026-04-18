@@ -1,9 +1,25 @@
+import Image from "next/image";
+
 export default function Whoami() {
   return (
-    <section className="h-[50vh] flex items-center justify-center bg-[#333333]">
-      <div className="text-center">
-        <h2 className="text-4xl font-bold text-[#C26E4B] font-lora">Wie ben ik</h2>
-        <p className="mt-4 text-[#F7EDE1] font-inter">Ik ben een student ICT & Media Design aan Fontys Hogescholen en momenteel bezig met mijn derde semester, waarin ik me richt op frontend development. Mijn interesse ligt in het ontwerpen én bouwen van digitale producten, van idee tot uitvoering. Ik vind het motiverend om te zien hoe een concept tot leven komt op het scherm en kijk ernaar uit om mijn kennis en vaardigheden verder te ontwikkelen binnen dit vakgebied.</p>
+    <section className="min-h-[50vh] bg-[#333333] px-6 py-12 md:px-10">
+      <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-10 md:flex-row md:items-start md:gap-12">
+        <div className="flex-1">
+          <h2 className="text-4xl text-[#C26E4B] font-lora">Wie ben ik</h2>
+          <p className="mt-4 text-[#F7EDE1] font-inter text-justify leading-relaxed">
+            Ik ben een student ICT & Media Design aan Fontys Hogescholen en momenteel bezig met mijn vierde semester, waarin ik me richt op Media Creation. Mijn interesse ligt in het ontwerpen en bouwen van digitale producten, van idee tot uitvoering. Ik vind het motiverend om te zien hoe een concept tot leven komt op het scherm en kijk ernaar uit om mijn kennis en vaardigheden verder te ontwikkelen binnen dit vakgebied.
+          </p>
+        </div>
+
+        <div className="w-full max-w-[320px] md:w-[320px] md:shrink-0">
+          <Image
+            src="/img/headshot.jpeg"
+            alt="Portretfoto"
+            width={320}
+            height={400}
+            className="h-auto w-full rounded-xl object-cover"
+          />
+        </div>
       </div>
     </section>
   );

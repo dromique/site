@@ -22,7 +22,7 @@ const cards = [
     subtitle: "Brand guide",
 description: "Samen met vier andere studenten hebben wij een brand guide gemaakt voor Calyx Media, een media agency dat wij hebben opgericht als onderdeel van onze opleiding.",
     buttonText: "Wat is Calyx Media?",
-    buttonLink: "#",
+    buttonLink: "/brandguideS3",
     brandingImage: "/img/projectCoverImages/brandguideS3.png",
     fileColor: "#fff",
   },
