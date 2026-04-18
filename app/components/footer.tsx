@@ -2,12 +2,15 @@ import Image from "next/image";
 
 export default function Footer() {
     return (
-        <footer id="site-footer" className="flex h-screen items-center justify-between bg-[#333333] px-12 py-16 dark:bg-[#333333]">
+        <footer id="site-footer" className="flex h-screen items-center justify-center gap-8 bg-[#333333] px-12 py-16 dark:bg-[#333333]">
             {/* Left Column */}
-            <div className="flex flex-1 flex-col items-center justify-center gap-4 text-center">
-                <h3 className="font-lora text-2xl text-[#C26E4B]">Vragen?</h3>
+            <div className="flex flex-1 flex-col items-start justify-center gap-4 text-start">
+                <h3 className="font-lora text-2xl text-[#C26E4B]">Gevolgde semesters</h3>
                 <p className="text-[#F7EDE1] font-inter leading-relaxed">
-                    Neem contact met me op via de contactgegevens of volg me op social media.
+                    Semester 1 - Orientatie <br />
+                    Semester 2 - Interactive Media <br />
+                    Semester 3 - Front End Development <br />
+                    Semester 4 - Media Creation <br />
                 </p>
             </div>
 
@@ -24,10 +27,10 @@ export default function Footer() {
             </div>
 
             {/* Right Column */}
-            <div className="flex flex-1 flex-col items-center justify-center gap-4 text-center">
-                <h3 className="font-lora text-2xl text-[#C26E4B]">Contacteer me</h3>
+            <div className="flex flex-1 flex-col items-start justify-center gap-4 text-start">
+                <h3 className="font-lora text-2xl text-[#C26E4B]">Stage semester 5</h3>
                 <p className="text-[#F7EDE1] font-inter leading-relaxed">
-                    Laten we samen aan iets geweldigs werken.
+                    Heeft u intresse? Neem contact met mij op! Ik zoek een stageplek voor de periode van 31 augustus 2026 t/m 22 januarie 2027.
                 </p>
             </div>
         </footer>
