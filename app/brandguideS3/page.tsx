@@ -1,7 +1,7 @@
 import Image from "next/image";
 
-export default function BrandGuideS2Page() {
-    const images = Array.from({ length: 12 }, (_, index) => `/img/brandguideS2/bg${index + 1}.png`);
+export default function BrandGuideS3Page() {
+    const images = Array.from({ length: 39 }, (_, index) => `/img/brandguideS3/${index + 1}.png`);
 
     return (
         <main className="min-h-screen bg-[#F7EDE1] p-6 md:p-10">
@@ -10,7 +10,7 @@ export default function BrandGuideS2Page() {
                     <Image
                         key={src}
                         src={src}
-                        alt={`Brand guide semester 2 pagina ${index + 1}`}
+                        alt={`Brand guide semester 3 pagina ${index + 1}`}
                         width={1920}
                         height={1080}
                         className="h-auto w-full rounded-xl"

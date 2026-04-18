@@ -12,9 +12,9 @@ const cards = [
     title: "Flight Of The Silverbird",
     subtitle: "Interactive visuals",
     description: "Een huidig project waarbij ik in groepsverband interactieve visuals maak voor het opkomende optreden van Harmonie L'Union Fraternelle. De visuals worden gemaakt met DaVinci Resolve en Vertex",
-    buttonText: "Coming soon",
-    buttonLink: "#",
-    brandingImage: "/img/projectCoverImages/tamafishyS3.png",
+    buttonText: "Kom naar het optreden op 31 mei",
+    buttonLink: "https://www.deschalm.com/nl/programma/harmonie-slagwerkgroep-l-union-fraternelle-j3ts",
+    brandingImage: "/img/projectCoverImages/flightOfTheSilverbirdS3.png",
     fileColor: "#fff",
   },
         {
@@ -23,7 +23,7 @@ const cards = [
 description: "Samen met vier andere studenten hebben wij een brand guide gemaakt voor Calyx Media, een media agency dat wij hebben opgericht als onderdeel van onze opleiding.",
     buttonText: "Wat is Calyx Media?",
     buttonLink: "#",
-    brandingImage: "/img/projectCoverImages/tamafishyS3.png",
+    brandingImage: "/img/projectCoverImages/brandguideS3.png",
     fileColor: "#fff",
   },
       {
