@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import React from "react";
+import Image from "next/image";
 
 interface CardStackProps {
   title?: string;
@@ -20,7 +21,8 @@ const CardStack: React.FC<CardStackProps> = ({
   description = "Description of the project goes here.",
   buttonText = "Lees Meer",
   buttonLink = "/project1",
-  brandingTitle = "Branding",
+  brandingTitle = "",
+  brandingImage,
 }) => {
   return (
     <div className="w-full max-w-7xl h-[450px] justify-center flex flex-col md:flex-row bg-[#333333] rounded-2xl p-6 md:p-10 mx-auto gap-8">
@@ -44,7 +46,17 @@ const CardStack: React.FC<CardStackProps> = ({
         <h1 className="md:text-5xl sm:text-4xl text-3xl font-lora wrap-break-word min-w-[250px] md:min-w-[320px] text-[#C26E4B]">
           {brandingTitle}
         </h1>
-        <div className="w-full flex justify-center items-center"></div>
+        <div className="w-full h-full flex justify-center items-center">
+          {brandingImage && brandingImage !== "#" ? (
+            <Image
+              src={brandingImage}
+              alt={`${title} branding image`}
+              width={480}
+              height={280}
+              className="w-full h-auto max-w-[480px] object-contain rounded-lg"
+            />
+          ) : null}
+        </div>
       </div>
     </div>
   );
