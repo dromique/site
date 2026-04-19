@@ -18,13 +18,15 @@ export default function Whoami() {
           </Link>
         </div>
 
-        <div className="w-full max-w-[320px] md:w-[320px] md:shrink-0">
+        <div className="relative aspect-4/5 w-full max-w-[320px] overflow-hidden rounded-xl md:w-[320px] md:shrink-0">
           <Image
             src="/img/headshot.jpeg"
             alt="Portretfoto"
-            width={320}
-            height={400}
-            className="h-auto w-full rounded-xl object-cover"
+            fill
+            sizes="(min-width: 768px) 320px, 100vw"
+            className="object-cover"
+            loading="eager"
+            priority
           />
         </div>
       </div>

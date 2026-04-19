@@ -11,9 +11,9 @@ export default function Home() {
         <AboveTheFold 
           title="Dominique van Waardhuizen" 
           subtitle="Semester 4 HBO ICT & Media Design Student"
-          bird={<AnimatedBird src="/img/bird1/bird1base.png" alt="Bird decoration" width={480} height={547} />}
-          beak={<AnimatedBird src="/img/bird1/bird1Underbeak.png" alt="Bird beak decoration" width={480} height={547} />}
-          wings={<AnimatedBird src="/img/bird1/bird1wing.png" alt="Bird wing decoration" width={480} height={547} />}
+          bird={<AnimatedBird src="/img/bird1/bird1base.png" alt="Bird decoration" width={480} height={547} motionType="base" />}
+          beak={<AnimatedBird src="/img/bird1/bird1Underbeak.png" alt="Bird beak decoration" width={480} height={547} motionType="underbeak" />}
+          wings={<AnimatedBird src="/img/bird1/bird1wing.png" alt="Bird wing decoration" width={480} height={547} motionType="wing" />}
         />
         <Whoami />
         <VerticalScrollSection />
