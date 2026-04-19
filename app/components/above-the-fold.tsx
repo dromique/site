@@ -14,74 +14,122 @@ interface AboveTheFoldProps {
 export default function AboveTheFold({ title, subtitle, bird, beak, wings }: AboveTheFoldProps) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const sectionRef = useRef<HTMLElement>(null);
-  const fadeIntervalRef = useRef<NodeJS.Timeout | null>(null);
-  const [hasInteracted, setHasInteracted] = useState(false);
-  const observerRef = useRef<IntersectionObserver | null>(null);
+  const fadeIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const fadeOutTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const sequenceRunningRef = useRef(false);
+  const [isPlaying, setIsPlaying] = useState(false);
 
-  const fadeIn = () => {
+  const clearAudioTimers = () => {
+    if (fadeIntervalRef.current) {
+      clearInterval(fadeIntervalRef.current);
+      fadeIntervalRef.current = null;
+    }
+    if (fadeOutTimeoutRef.current) {
+      clearTimeout(fadeOutTimeoutRef.current);
+      fadeOutTimeoutRef.current = null;
+    }
+  };
+
+  const fadeTo = (targetVolume: number, durationMs: number) => {
     const audio = audioRef.current;
     if (!audio) return;
-    
-    if (fadeIntervalRef.current) clearInterval(fadeIntervalRef.current);
-    
+
+    if (fadeIntervalRef.current) {
+      clearInterval(fadeIntervalRef.current);
+    }
+
+    const startVolume = audio.volume;
+    const steps = 12;
+    let step = 0;
+
+    fadeIntervalRef.current = setInterval(() => {
+      step += 1;
+      const progress = Math.min(step / steps, 1);
+      audio.volume = startVolume + (targetVolume - startVolume) * progress;
+
+      if (progress >= 1 && fadeIntervalRef.current) {
+        clearInterval(fadeIntervalRef.current);
+        fadeIntervalRef.current = null;
+      }
+    }, Math.max(Math.floor(durationMs / steps), 20));
+  };
+
+  const playOnceWithFade = async () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+
+    audio.currentTime = 0;
     audio.volume = 0;
-    const playPromise = audio.play();
-    
-    if (playPromise !== undefined) {
-      playPromise
-        .then(() => {
-          let volume = 0;
-          fadeIntervalRef.current = setInterval(() => {
-            if (volume < 1) {
-              volume += 0.05;
-              audio.volume = Math.min(volume, 1);
-            } else {
-              if (fadeIntervalRef.current) clearInterval(fadeIntervalRef.current);
-            }
-          }, 50);
-        })
-        .catch((error) => console.log('Audio play failed:', error));
+
+    await audio.play();
+    fadeTo(1, 280);
+
+    const scheduleFadeOut = () => {
+      if (!audio || !Number.isFinite(audio.duration) || audio.duration <= 0) return;
+      const fadeOutLeadMs = 550;
+      const playMs = audio.duration * 1000;
+      const triggerInMs = Math.max(playMs - fadeOutLeadMs, 150);
+
+      if (fadeOutTimeoutRef.current) clearTimeout(fadeOutTimeoutRef.current);
+      fadeOutTimeoutRef.current = setTimeout(() => {
+        fadeTo(0, 420);
+      }, triggerInMs);
+    };
+
+    if (audio.readyState >= 1) {
+      scheduleFadeOut();
+    } else {
+      audio.addEventListener('loadedmetadata', scheduleFadeOut, { once: true });
+    }
+
+    await new Promise<void>((resolve) => {
+      const onEnded = () => {
+        audio.removeEventListener('ended', onEnded);
+        resolve();
+      };
+      audio.addEventListener('ended', onEnded);
+    });
+
+    if (fadeOutTimeoutRef.current) {
+      clearTimeout(fadeOutTimeoutRef.current);
+      fadeOutTimeoutRef.current = null;
     }
   };
 
   useEffect(() => {
-    const section = sectionRef.current;
-    if (!section || !hasInteracted) return;
-
-    observerRef.current = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            fadeIn();
-          }
-        });
-      },
-      { threshold: 0.5 }
-    );
-
-    observerRef.current.observe(section);
-    
-    // Start audio immediately if section is visible
-    fadeIn();
-
     return () => {
-      if (observerRef.current) {
-        observerRef.current.disconnect();
-      }
-      if (fadeIntervalRef.current) clearInterval(fadeIntervalRef.current);
+      clearAudioTimers();
     };
-  }, [hasInteracted]);
+  }, []);
 
-  const handleInteraction = () => {
-    setHasInteracted(true);
+  const handleInteraction = async () => {
+    const audio = audioRef.current;
+    if (!audio || sequenceRunningRef.current) return;
+
+    sequenceRunningRef.current = true;
+    setIsPlaying(true);
+    audio.loop = false;
+
+    try {
+      await playOnceWithFade();
+      await playOnceWithFade();
+    } catch (error) {
+      console.log('Audio play failed:', error);
+    } finally {
+      clearAudioTimers();
+      audio.pause();
+      audio.currentTime = 0;
+      audio.volume = 0;
+      setIsPlaying(false);
+      sequenceRunningRef.current = false;
+    }
   };
 
   return (
-    <section ref={sectionRef} className="relative flex min-h-[100svh] items-center justify-start overflow-hidden bg-[#F7EDE1] px-5 py-24 sm:px-8 md:py-0">
+    <section ref={sectionRef} className="relative flex min-h-svh items-center justify-start overflow-hidden bg-[#F7EDE1] px-5 py-24 sm:px-8 md:py-0">
       <ParticleAnimation />
       <audio 
         ref={audioRef} 
-        loop
         preload="auto"
         muted={false}
         crossOrigin="anonymous"
@@ -91,15 +139,14 @@ export default function AboveTheFold({ title, subtitle, bird, beak, wings }: Abo
       <div className="relative z-10 max-w-xl text-start">
         <h2 className="max-w-[12ch] text-4xl font-bold text-[#C26E4B] font-lora sm:text-5xl lg:text-6xl">{title}</h2>
         <p className="mt-4 max-w-prose text-base text-[#333333] font-inter sm:text-lg">{subtitle}</p>
-        {!hasInteracted && (
-          <button
-            onClick={handleInteraction}
-            className="mt-6 rounded-lg bg-[#C26E4B] px-5 py-3 text-sm text-white transition-colors hover:bg-[#A85A3B] sm:px-6 sm:text-base"
-          >
-            Start
-          </button>
-        )}
       </div>
+      <button
+        onClick={handleInteraction}
+        disabled={isPlaying}
+        className="absolute bottom-2 right-3 z-20 w-auto max-w-[min(90vw,18rem)] rounded-lg bg-[#C26E4B] px-4 py-3 text-center text-sm text-white transition-colors hover:bg-[#A85A3B] disabled:cursor-not-allowed disabled:opacity-70 sm:right-[2.5vw] sm:px-6 sm:text-base max-[900px]:left-4 max-[900px]:right-auto max-[900px]:bottom-4"
+      >
+        {isPlaying ? 'Ik fluit' : 'Ik kan fluiten!'}
+      </button>
       {bird}
       {beak}
       {wings}
