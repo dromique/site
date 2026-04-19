@@ -8,22 +8,31 @@ import CardStack from "./cardStack";
 gsap.registerPlugin(ScrollTrigger);
 
 const cards = [
+          {
+    title: "Mystery project",
+    subtitle: "R3F - Semester 4",
+    description: "Een opkomend project waar ik gebruik maak van R3F.",
+    buttonText: "Coming soon",
+    buttonLink: "#",
+    brandingImage: "/img/projectCoverImages/r3fS4.png",
+    fileColor: "#fff",
+  },
         {
     title: "Flight Of The Silverbird",
     subtitle: "Interactive visuals - Semester 4",
-    description: "Een huidig project waarbij ik in groepsverband interactieve visuals maak voor het opkomende optreden van Harmonie L'Union Fraternelle. De visuals worden gemaakt met DaVinci Resolve en Vertex",
+    description: "Een huidig project waarbij ik in groepsverband interactieve visuals maak voor het opkomende optreden van Harmonie L'Union Fraternelle. De visuals worden gemaakt met DaVinci Resolve en Vertex.",
     buttonText: "Kom naar het optreden op 31 mei",
     buttonLink: "https://www.deschalm.com/nl/programma/harmonie-slagwerkgroep-l-union-fraternelle-j3ts",
-    brandingImage: "/img/projectCoverImages/flightOfTheSilverbirdS3.png",
+    brandingImage: "/img/projectCoverImages/flightOfTheSilverbirdS4.png",
     fileColor: "#fff",
   },
         {
     title: "Calyx Media",
     subtitle: "Brand guide - Semester 4",
-description: "Samen met vier andere studenten heb ik een brand guide gemaakt voor Calyx Media, een media agency dat wij hebben opgericht als onderdeel van onze opleiding. Ik heb mij voornamelijk gericht op het onderzoeken en onderbouwen van het merk.",
+    description: "Samen met vier andere studenten heb ik een brand guide gemaakt voor Calyx Media, een media agency dat wij hebben opgericht als onderdeel van onze opleiding. Ik heb mij voornamelijk gericht op het onderzoeken en onderbouwen van het merk.",
     buttonText: "Ontdek Calyx Media",
-    buttonLink: "/brandguideS3",
-    brandingImage: "/img/projectCoverImages/brandguideS3.png",
+    buttonLink: "/brandguideS4",
+    brandingImage: "/img/projectCoverImages/brandguideS4.png",
     fileColor: "#fff",
   },
       {
