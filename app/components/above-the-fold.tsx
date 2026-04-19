@@ -143,7 +143,7 @@ export default function AboveTheFold({ title, subtitle, bird, beak, wings }: Abo
       <button
         onClick={handleInteraction}
         disabled={isPlaying}
-        className="absolute bottom-2 left-4 z-20 w-auto max-w-[min(90vw,18rem)] rounded-lg bg-[#C26E4B] px-4 py-3 text-center text-sm text-white transition-colors hover:bg-[#A85A3B] disabled:cursor-not-allowed disabled:opacity-70 sm:bottom-4 sm:px-6 sm:text-base"
+        className="absolute bottom-3 left-4 z-20 w-auto max-w-[min(90vw,18rem)] rounded-lg bg-[#C26E4B] px-4 py-3 text-center text-sm text-white transition-colors hover:bg-[#A85A3B] disabled:cursor-not-allowed disabled:opacity-70 sm:bottom-[2.5vw] sm:px-6 sm:text-base"
       >
         {isPlaying ? 'Ik fluit' : 'Ik kan fluiten!'}
       </button>
