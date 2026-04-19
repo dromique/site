@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Footer() {
     return (
-        <footer id="site-footer" className="flex min-h-svh flex-col items-stretch justify-center gap-10 bg-[#333333] px-5 py-14 sm:px-8 md:flex-row md:items-start md:gap-8 md:px-12 md:py-16 dark:bg-[#333333]">
+        <footer id="site-footer" className="flex min-h-[50vh] flex-col items-stretch justify-center gap-10 bg-[#333333] px-5 py-14 sm:px-8 md:flex-row md:items-start md:gap-8 md:px-12 md:py-16 dark:bg-[#333333]">
             {/* Left Column */}
             <div className="flex flex-1 flex-col items-start justify-start gap-4 text-start md:pt-10 lg:pt-14">                
                 <h3 className="font-lora text-2xl text-[#C26E4B] sm:text-3xl">Stage semester 5</h3>

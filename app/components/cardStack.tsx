@@ -25,14 +25,14 @@ const CardStack: React.FC<CardStackProps> = ({
   brandingImage,
 }) => {
   return (
-    <div className="mx-auto flex h-[46rem] w-full max-w-7xl flex-col gap-6 overflow-hidden rounded-2xl bg-[#333333] p-5 sm:h-[44rem] sm:p-6 md:h-[32rem] md:flex-row md:p-10">
+    <div className="mx-auto flex h-184 w-full max-w-7xl flex-col gap-6 overflow-hidden rounded-2xl bg-[#333333] p-5 sm:h-176 sm:p-6 md:h-128 md:flex-row md:p-10">
       {/* Left Side */}
       <div className="flex min-h-0 min-w-0 flex-[1.45] flex-col gap-4 md:h-full">
-        <h1 className="max-w-full break-words font-lora text-3xl text-[#C26E4B] sm:text-4xl md:text-5xl">{title}</h1>
-        <h2 className="break-words font-lora text-xl text-[#C26E4B] sm:text-2xl md:text-[1.85rem]">
+        <h1 className="max-w-full wrap-break-word font-lora text-3xl text-[#C26E4B] sm:text-4xl md:text-5xl">{title}</h1>
+        <h2 className="wrap-break-word font-lora text-xl text-[#C26E4B] sm:text-2xl md:text-[1.85rem]">
           {subtitle}
         </h2>
-        <p className="min-h-0 flex-1 text-sm leading-relaxed text-[#F7EDE1] font-inter sm:text-base md:text-lg">
+        <p className="min-h-0 flex-1 text-sm leading-relaxed text-[#F7EDE1] font-inter sm:text-base md:text-lg lg:text-xl">
           {description}
         </p>
         <Link
@@ -44,8 +44,8 @@ const CardStack: React.FC<CardStackProps> = ({
       </div>
 
       {/* Right Side */}
-      <div className="flex min-h-0 min-w-0 flex-[0.85] flex-col gap-4 md:h-full">
-        <h1 className="break-words font-lora text-2xl text-[#C26E4B] sm:text-3xl md:text-4xl">
+      <div className="flex min-h-0 min-w-0 flex-[1.15] flex-col gap-4 md:h-full">
+        <h1 className="wrap-break-word font-lora text-2xl text-[#C26E4B] sm:text-3xl md:text-4xl">
           {brandingTitle}
         </h1>
         <div className="flex min-h-0 flex-1 w-full items-center justify-center">
@@ -55,7 +55,7 @@ const CardStack: React.FC<CardStackProps> = ({
               alt={`${title} branding image`}
               width={480}
               height={280}
-              className="h-auto w-full max-w-[280px] rounded-lg object-contain sm:max-w-[320px] md:max-w-[260px] lg:max-w-[300px]"
+              className="h-auto w-full max-w-[320px] rounded-lg object-contain sm:max-w-[360px] md:max-w-[340px] lg:max-w-[420px]"
             />
           ) : null}
         </div>
