@@ -24,7 +24,7 @@ export default function AnimatedBird({ src, alt, width, height }: AnimatedBirdPr
   }, []);
 
   return (
-    <div className={`absolute right-[2.5vw] transition-all duration-600 pointer-events-none ${isHopping ? 'bottom-[calc(2.5vw+0.625vw)]' : 'bottom-[2.5vw]'}`}>
+    <div className={`pointer-events-none absolute right-3 sm:right-[2.5vw] transition-all duration-500 ${isHopping ? 'bottom-4 sm:bottom-[calc(2.5vw+0.625vw)]' : 'bottom-3 sm:bottom-[2.5vw]'}`}>
       <Image 
         src={src}
         alt={alt}
@@ -33,7 +33,7 @@ export default function AnimatedBird({ src, alt, width, height }: AnimatedBirdPr
         priority
         unoptimized
         onLoad={() => setIsLoaded(true)}
-        className={`transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+        className={`h-auto max-w-[42vw] transition-opacity duration-500 sm:max-w-none ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
       />
     </div>
   );

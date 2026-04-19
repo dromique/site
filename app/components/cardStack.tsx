@@ -25,35 +25,37 @@ const CardStack: React.FC<CardStackProps> = ({
   brandingImage,
 }) => {
   return (
-    <div className="w-full max-w-7xl h-[450px] justify-center flex flex-col md:flex-row bg-[#333333] rounded-2xl p-6 md:p-10 mx-auto gap-8">
+    <div className="mx-auto flex h-[46rem] w-full max-w-7xl flex-col gap-6 overflow-hidden rounded-2xl bg-[#333333] p-5 sm:h-[44rem] sm:p-6 md:h-[32rem] md:flex-row md:p-10">
       {/* Left Side */}
-      <div className="flex-1 flex flex-col gap-4 min-w-[300px]">
-        <h1 className="font-lora md:text-5xl text-4xl w-max text-[#C26E4B]">{title}</h1>
-        <h2 className="font-lora text-2xl text-[#C26E4B]">{subtitle}</h2>
-        <p className="text-[#F7EDE1] text-base md:text-lg mb-6 leading-relaxed font-inter">
+      <div className="flex min-h-0 min-w-0 flex-[1.45] flex-col gap-4 md:h-full">
+        <h1 className="max-w-full break-words font-lora text-3xl text-[#C26E4B] sm:text-4xl md:text-5xl">{title}</h1>
+        <h2 className="break-words font-lora text-xl text-[#C26E4B] sm:text-2xl md:text-[1.85rem]">
+          {subtitle}
+        </h2>
+        <p className="min-h-0 flex-1 text-sm leading-relaxed text-[#F7EDE1] font-inter sm:text-base md:text-lg">
           {description}
         </p>
         <Link
           href={buttonLink}
-          className="bg-[#C26E4B] text-[#F7EDE1] cursor-pointer rounded-lg text-xl font-lora flex justify-center items-center w-max px-10 py-3 mt-auto hover:bg-[#a85e41] transition-colors"
+          className="mt-auto inline-flex w-full max-w-full items-center justify-center rounded-lg bg-[#C26E4B] px-4 py-3 text-center font-lora text-sm leading-tight text-[#F7EDE1] transition-colors hover:bg-[#a85e41] sm:w-fit sm:px-5 sm:text-base"
         >
           {buttonText}
         </Link>
       </div>
 
       {/* Right Side */}
-      <div className="flex flex-col gap-4 basis-1/2 min-w-[320px]">
-        <h1 className="md:text-5xl sm:text-4xl text-3xl font-lora wrap-break-word min-w-[250px] md:min-w-[320px] text-[#C26E4B]">
+      <div className="flex min-h-0 min-w-0 flex-[0.85] flex-col gap-4 md:h-full">
+        <h1 className="break-words font-lora text-2xl text-[#C26E4B] sm:text-3xl md:text-4xl">
           {brandingTitle}
         </h1>
-        <div className="w-full h-full flex justify-center items-center">
+        <div className="flex min-h-0 flex-1 w-full items-center justify-center">
           {brandingImage && brandingImage !== "#" ? (
             <Image
               src={brandingImage}
               alt={`${title} branding image`}
               width={480}
               height={280}
-              className="w-full h-auto max-w-[480px] object-contain rounded-lg"
+              className="h-auto w-full max-w-[280px] rounded-lg object-contain sm:max-w-[320px] md:max-w-[260px] lg:max-w-[300px]"
             />
           ) : null}
         </div>

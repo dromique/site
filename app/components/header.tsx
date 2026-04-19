@@ -13,14 +13,14 @@ export default function Header() {
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 flex items-center justify-between px-8 h-[10vh] z-50">
+    <header className="fixed top-0 left-0 right-0 z-50 flex h-16 items-center justify-between px-4 sm:h-[10vh] sm:px-8">
       <Link href="/" className="inline-flex h-full items-center">
         <Image
           src="/img/logo.svg"
           alt="Homepage"
           width={140}
           height={56}
-          className="h-[70%] w-auto"
+          className="h-9 w-auto sm:h-[70%]"
           priority
         />
       </Link>

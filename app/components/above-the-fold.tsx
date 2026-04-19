@@ -77,7 +77,7 @@ export default function AboveTheFold({ title, subtitle, bird, beak, wings }: Abo
   };
 
   return (
-    <section ref={sectionRef} className="h-screen flex items-center justify-start px-8 bg-[#F7EDE1] relative overflow-hidden">
+    <section ref={sectionRef} className="relative flex min-h-[100svh] items-center justify-start overflow-hidden bg-[#F7EDE1] px-5 py-24 sm:px-8 md:py-0">
       <ParticleAnimation />
       <audio 
         ref={audioRef} 
@@ -88,13 +88,13 @@ export default function AboveTheFold({ title, subtitle, bird, beak, wings }: Abo
       >
         <source src="/sound/683399__joker313__robin2.wav" type="audio/wav" />
       </audio>
-      <div className="text-start">
-        <h2 className="text-4xl font-bold text-[#C26E4B] font-lora">{title}</h2>
-        <p className="mt-4 text-[#333333] font-inter">{subtitle}</p>
+      <div className="relative z-10 max-w-xl text-start">
+        <h2 className="max-w-[12ch] text-4xl font-bold text-[#C26E4B] font-lora sm:text-5xl lg:text-6xl">{title}</h2>
+        <p className="mt-4 max-w-prose text-base text-[#333333] font-inter sm:text-lg">{subtitle}</p>
         {!hasInteracted && (
           <button
             onClick={handleInteraction}
-            className="mt-6 px-6 py-2 bg-[#C26E4B] text-white rounded-lg hover:bg-[#A85A3B] transition-colors"
+            className="mt-6 rounded-lg bg-[#C26E4B] px-5 py-3 text-sm text-white transition-colors hover:bg-[#A85A3B] sm:px-6 sm:text-base"
           >
             Start
           </button>

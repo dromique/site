@@ -131,14 +131,14 @@ export default function VerticalScrollSection() {
 
   return (
     <div
-      className="scroll-section vertical-section h-screen bg-[#F7EDE1]"
+      className="scroll-section vertical-section min-h-[100svh] bg-[#F7EDE1]"
       ref={scrollSectionRef}
     >
-      <div className="wrapper relative w-full h-full overflow-hidden">
+      <div className="wrapper relative h-full min-h-[100svh] w-full overflow-hidden">
         {cards.map((card, index) => (
           <div
             key={index}
-            className="item absolute inset-0 flex justify-center items-center"
+            className="item absolute inset-0 flex items-center justify-center px-4 py-20 sm:px-6 md:px-8"
           >
             <CardStack
               title={card.title}

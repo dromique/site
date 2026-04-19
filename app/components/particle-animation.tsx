@@ -59,7 +59,7 @@ export default function ParticleAnimation() {
   }, []);
 
   return (
-    <div className="absolute inset-0 pointer-events-none overflow-hidden">
+    <div className="pointer-events-none absolute inset-0 overflow-hidden">
       <style>{`
         @keyframes particleFloat {
           0% {
@@ -109,10 +109,10 @@ export default function ParticleAnimation() {
           key={particle.id}
           className={`particle-${particle.id} absolute`}
           style={{
-            right: '30vw',
-            top: '25vh',
-            width: '40px',
-            height: '40px',
+            right: 'clamp(1rem, 30vw, 18rem)',
+            top: 'clamp(4rem, 25vh, 14rem)',
+            width: 'clamp(1.25rem, 4vw, 2.5rem)',
+            height: 'clamp(1.25rem, 4vw, 2.5rem)',
           }}
         >
           <Image 
