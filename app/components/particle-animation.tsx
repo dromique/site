@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import { startSharedHopLoop, subscribeToSharedHop } from '@/app/components/birdMotion';
 
 interface Particle {
   id: number;
@@ -27,6 +28,16 @@ const NOTE_IMAGES = [
 
 export default function ParticleAnimation() {
   const [particles, setParticles] = useState<Particle[]>([]);
+  const [isHopping, setIsHopping] = useState(false);
+
+  useEffect(() => {
+    const unsubscribe = subscribeToSharedHop(setIsHopping);
+    startSharedHopLoop();
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   useEffect(() => {
     // Generate initial particles with sequential staggering to prevent overlap
@@ -58,18 +69,23 @@ export default function ParticleAnimation() {
     return () => clearInterval(spawnInterval);
   }, []);
 
+  const anchorPositionClass =
+    isHopping
+      ? 'bottom-4 sm:bottom-[calc(2.5vw+0.625vw)]'
+      : 'bottom-3 sm:bottom-[2.5vw]';
+
   return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden">
+    <div
+      className={`pointer-events-none absolute right-3 overflow-visible transition-all duration-500 sm:right-[2.5vw] ${anchorPositionClass} w-[42vw] max-w-[480px] aspect-480/547 sm:w-[480px]`}
+    >
       <style>{`
         @keyframes particleFloat {
           0% {
-            right: 30vw;
-            top: 25vh;
+            transform: translate(0, 0);
             opacity: 1;
           }
           100% {
-            right: calc(50% - 20px);
-            top: 0;
+            transform: translate(-180px, -220px);
             opacity: 0;
           }
         }
@@ -94,9 +110,12 @@ export default function ParticleAnimation() {
           }
 
           .particle-${p.id} {
-            animation: 
-              particleFloat ${p.duration}s ease-in forwards,
-              particleWave${p.id} ${p.duration}s ease-in-out forwards;
+            animation: particleFloat ${p.duration}s ease-in forwards;
+            animation-delay: ${p.delay}s;
+          }
+
+          .particle-wave-${p.id} {
+            animation: particleWave${p.id} ${p.duration}s ease-in-out forwards;
             animation-delay: ${p.delay}s;
           }
         `
@@ -109,23 +128,25 @@ export default function ParticleAnimation() {
           key={particle.id}
           className={`particle-${particle.id} absolute`}
           style={{
-            right: 'clamp(1rem, 30vw, 18rem)',
-            top: 'clamp(4rem, 25vh, 14rem)',
+            left: '0',
+            top: '0',
             width: 'clamp(1.25rem, 4vw, 2.5rem)',
             height: 'clamp(1.25rem, 4vw, 2.5rem)',
           }}
         >
-          <Image 
-            src={NOTE_IMAGES[particle.noteImage]}
-            alt="music note"
-            width={40}
-            height={40}
-            priority
-            unoptimized
-            loading="eager"
-            onError={(e) => console.log('Image failed to load:', NOTE_IMAGES[particle.noteImage])}
-            className="w-full h-full object-contain"
-          />
+          <div className={`particle-wave-${particle.id} h-full w-full`}>
+            <Image 
+              src={NOTE_IMAGES[particle.noteImage]}
+              alt="music note"
+              width={40}
+              height={40}
+              priority
+              unoptimized
+              loading="eager"
+              onError={(e) => console.log('Image failed to load:', NOTE_IMAGES[particle.noteImage])}
+              className="w-full h-full object-contain"
+            />
+          </div>
         </div>
       ))}
     </div>

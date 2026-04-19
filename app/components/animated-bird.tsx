@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { startSharedHopLoop, subscribeToSharedHop } from '@/app/components/birdMotion';
 
 interface AnimatedBirdProps {
   src: string;
@@ -10,29 +11,6 @@ interface AnimatedBirdProps {
   height: number;
   motionType?: 'base' | 'underbeak' | 'wing';
 }
-
-const hopSubscribers = new Set<(value: boolean) => void>();
-let hopLoopStarted = false;
-
-const broadcastHopState = (value: boolean) => {
-  hopSubscribers.forEach((notify) => notify(value));
-};
-
-const startSharedHopLoop = () => {
-  if (hopLoopStarted) return;
-  hopLoopStarted = true;
-
-  const scheduleNextHop = () => {
-    const randomDelayMs = Math.floor(Math.random() * 7001) + 1000; // 1-8s
-    setTimeout(() => {
-      broadcastHopState(true);
-      setTimeout(() => broadcastHopState(false), 600);
-      scheduleNextHop();
-    }, randomDelayMs);
-  };
-
-  scheduleNextHop();
-};
 
 export default function AnimatedBird({
   src,
@@ -47,11 +25,11 @@ export default function AnimatedBird({
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
-    hopSubscribers.add(setIsHopping);
+    const unsubscribe = subscribeToSharedHop(setIsHopping);
     startSharedHopLoop();
 
     return () => {
-      hopSubscribers.delete(setIsHopping);
+      unsubscribe();
     };
   }, []);
 
