@@ -20,7 +20,7 @@ const cards = [
         {
     title: "Flight Of The Silverbird",
     subtitle: "Interactive visuals - Semester 4",
-    description: "Een huidig project waarbij ik in groepsverband interactieve visuals maak voor het opkomende optreden van Harmonie L'Union Fraternelle. De visuals worden gemaakt met DaVinci Resolve en Vertex.",
+    description: "Een huidig project waarbij ik in groepsverband interactieve visuals maak voor het opkomende optreden van Harmonie L'Union Fraternelle, met behulp van DaVinci Resolve en Vertex.",
     buttonText: "Kom naar het optreden op 31 mei",
     buttonLink: "https://www.deschalm.com/nl/programma/harmonie-slagwerkgroep-l-union-fraternelle-j3ts",
     brandingImage: "/img/projectCoverImages/flightOfTheSilverbirdS4.png",
@@ -29,7 +29,7 @@ const cards = [
         {
     title: "Calyx Media",
     subtitle: "Brand guide - Semester 4",
-    description: "Samen met vier andere studenten heb ik een brand guide gemaakt voor Calyx Media, een media agency dat wij hebben opgericht als onderdeel van onze opleiding. Ik heb mij voornamelijk gericht op het onderzoeken en onderbouwen van het merk.",
+    description: "Samen met vier andere studenten heb ik een brand guide gemaakt voor Calyx Media, een media agency die wij hebben opgericht als onderdeel van onze opleiding. Ik heb mij voornamelijk gericht op het onderzoeken en onderbouwen van het merk.",
     buttonText: "Ontdek Calyx Media",
     buttonLink: "/brandguideS4",
     brandingImage: "/img/projectCoverImages/brandguideS4.png",
@@ -65,7 +65,7 @@ const cards = [
   {
     title: "Verfwereld",
     subtitle: "Experience playground - Semester 2",
-    description: "Voor stakeholder Cardan heb ik in groepsverband een experience playground gemaakt, genaamd Verfwereld. Waar de gebruiker met filters een simulatie kan starten waarin naarvoren komt hoe een gebruikers onvriendelijke website is voor mensen met een visuele beperking.",
+    description: "Voor stakeholder Cardan heb ik in groepsverband een experience playground gemaakt, genaamd Verfwereld. Waar de gebruiker met filters een simulatie kan starten waarin naarvoren komt hoe een gebruikers onvriendelijke website wordt ervaren door mensen met een visuele beperking.",
     buttonText: "Ervaar Verfwereld",
     buttonLink: "https://i538263.hera.fontysict.net/cardan-dev/",
     brandingImage: "/img/projectCoverImages/verfwereldS2.png",
