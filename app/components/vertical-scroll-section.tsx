@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import CardStack from "./cardStack";
 
 gsap.registerPlugin(ScrollTrigger);
+ScrollTrigger.config({ ignoreMobileResize: true });
 
 const RETURN_CARD_INDEX_KEY = "home:return-card-index";
 const RETURN_ANCHOR_KEY = "home:return-anchor";
@@ -13,7 +14,7 @@ const RETURN_MODE_KEY = "home:return-mode";
 const RETURN_APPLIED_KEY = "home:return-applied";
 
 const cards = [
-          {
+  {
     title: "Mystery project",
     subtitle: "R3F - Semester 4",
     description: "Een opkomend project waar ik gebruik maak van R3F.",
@@ -22,7 +23,7 @@ const cards = [
     brandingImage: "/img/projectCoverImages/r3fS4.png",
     fileColor: "#fff",
   },
-        {
+  {
     title: "Flight Of The Silverbird",
     subtitle: "Interactive visuals - Semester 4",
     description: "Een huidig project waarbij ik in groepsverband interactieve visuals maak voor het opkomende optreden van Harmonie L'Union Fraternelle, met behulp van DaVinci Resolve en Vertex.",
@@ -31,7 +32,7 @@ const cards = [
     brandingImage: "/img/projectCoverImages/flightOfTheSilverbirdS4.png",
     fileColor: "#fff",
   },
-        {
+  {
     title: "Calyx Media",
     subtitle: "Brand guide - Semester 4",
     description: "Samen met vier andere studenten heb ik een brand guide gemaakt voor Calyx Media, een media agency die wij hebben opgericht als onderdeel van onze opleiding. Ik heb mij voornamelijk gericht op het onderzoeken en onderbouwen van het merk.",
@@ -40,7 +41,7 @@ const cards = [
     brandingImage: "/img/projectCoverImages/brandguideS4.png",
     fileColor: "#fff",
   },
-      {
+  {
     title: "Tamafishy",
     subtitle: "Flipdot display - Semester 3",
     description: "Een Tamagotchi gemaakt in groepsverband voor een flipdot display. Tamafishy is gemaakt om de werknemers in het kantoor van OWOW te stimuleren om taken te voltooien op een interactieve manier.",
@@ -49,7 +50,7 @@ const cards = [
     brandingImage: "/img/projectCoverImages/tamafishyS3.png",
     fileColor: "#fff",
   },
-    {
+  {
     title: "City at night",
     subtitle: "School portfolio - Semester 2",
     description: "Een portfolio om bewijsstukken te leveren voor school. Ik heb gekozen voor het thema 'City at night' omdat ik de sfeer van een stad 's nachts  sereen vind en dit aansluit bij mij als persoon. Op deze manier kan ik een school portfolio maken dat ook echt iets over mij vertelt.",
@@ -112,6 +113,7 @@ export default function VerticalScrollSection() {
       scrollTrigger: {
         trigger: section,
         pin: true,
+        pinType: "fixed",
         start: "top top",
         end: () => `+=${(items.length - 1) * 100}%`,
         scrub: 1,
@@ -121,8 +123,8 @@ export default function VerticalScrollSection() {
     });
 
     items.forEach((item, index) => {
-      timeline.to(item, { scale: 0.9, borderRadius: "10px" });
       if (items[index + 1]) {
+        timeline.to(item, { scale: 0.9, borderRadius: "10px" });
         timeline.to(
           items[index + 1],
           { yPercent: 0 },
@@ -164,7 +166,8 @@ export default function VerticalScrollSection() {
       const returnMode = window.sessionStorage.getItem(RETURN_MODE_KEY);
       if (returnMode !== "card") return false;
 
-      const savedIndex = Number(window.sessionStorage.getItem(RETURN_CARD_INDEX_KEY));
+      const rawIndex = window.sessionStorage.getItem(RETURN_CARD_INDEX_KEY);
+      const savedIndex = rawIndex === null ? NaN : Number(rawIndex);
       if (!Number.isInteger(savedIndex) || savedIndex < 0 || savedIndex >= items.length) {
         window.sessionStorage.removeItem(RETURN_MODE_KEY);
         return false;
@@ -216,24 +219,6 @@ export default function VerticalScrollSection() {
       });
     };
 
-    if (restoreWhoAmI()) {
-      return () => {
-        window.history.scrollRestoration = previousScrollRestoration;
-        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
-        timeline.kill();
-      };
-    }
-
-    if (!restoreSavedCardIndex()) {
-      const restoreWasApplied = window.sessionStorage.getItem(RETURN_APPLIED_KEY) === "1";
-      if (restoreWasApplied) {
-        window.sessionStorage.removeItem(RETURN_APPLIED_KEY);
-      } else {
-        clearReturnState();
-        scrollToTop();
-      }
-    }
-
     const handlePageShow = () => {
       if (restoreWhoAmI()) return;
       if (restoreSavedCardIndex()) return;
@@ -247,20 +232,36 @@ export default function VerticalScrollSection() {
     };
     window.addEventListener("pageshow", handlePageShow);
 
-    return () => {
+    const cleanup = () => {
       window.history.scrollRestoration = previousScrollRestoration;
       window.removeEventListener("pageshow", handlePageShow);
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      timeline.scrollTrigger?.kill();
       timeline.kill();
     };
+
+    if (restoreWhoAmI()) {
+      return cleanup;
+    }
+
+    if (!restoreSavedCardIndex()) {
+      const restoreWasApplied = window.sessionStorage.getItem(RETURN_APPLIED_KEY) === "1";
+      if (restoreWasApplied) {
+        window.sessionStorage.removeItem(RETURN_APPLIED_KEY);
+      } else {
+        clearReturnState();
+        scrollToTop();
+      }
+    }
+
+    return cleanup;
   }, []);
 
   return (
     <div
-      className="scroll-section vertical-section min-h-dvh overflow-hidden bg-[#F7EDE1]"
+      className="scroll-section vertical-section h-svh overflow-hidden bg-[#F7EDE1]"
       ref={scrollSectionRef}
     >
-      <div className="wrapper relative h-full min-h-dvh w-full overflow-hidden bg-[#F7EDE1]">
+      <div className="wrapper relative h-full w-full overflow-hidden bg-[#F7EDE1]">
         {cards.map((card, index) => (
           <div
             key={index}
@@ -273,7 +274,6 @@ export default function VerticalScrollSection() {
               buttonText={card.buttonText}
               buttonLink={card.buttonLink}
               returnCardIndex={index}
-              // brandingTitle={card.brandingTitle}
               brandingImage={card.brandingImage}
               fileColor={card.fileColor}
             />
