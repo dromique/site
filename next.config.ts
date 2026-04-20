@@ -1,6 +1,6 @@
 import type { NextConfig } from "next";
 
-const deploymentBasePath = "/s4/portfolio";
+const deploymentBasePath = process.env.CI === "true" ? "/s4/portfolio" : "/site";
 const isProduction = process.env.NODE_ENV === "production";
 
 const nextConfig: NextConfig = {
