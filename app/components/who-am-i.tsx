@@ -1,10 +1,22 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { withBasePath } from "@/app/lib/with-base-path";
 
+const RETURN_ANCHOR_KEY = "home:return-anchor";
+const RETURN_CARD_INDEX_KEY = "home:return-card-index";
+const RETURN_MODE_KEY = "home:return-mode";
+
+const handleCvClick = () => {
+  window.sessionStorage.setItem(RETURN_MODE_KEY, "who-am-i");
+  window.sessionStorage.setItem(RETURN_ANCHOR_KEY, "who-am-i");
+  window.sessionStorage.removeItem(RETURN_CARD_INDEX_KEY);
+};
+
 export default function Whoami() {
   return (
-    <section className="min-h-[50vh] bg-[#333333] px-6 py-12 md:px-10">
+    <section id="who-am-i" className="min-h-[50vh] bg-[#333333] px-6 py-12 md:px-10">
       <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-10 md:flex-row md:items-start md:gap-12">
         <div className="flex-1">
           <h2 className="text-4xl text-[#C26E4B] font-lora">Wie ben ik</h2>
@@ -13,6 +25,8 @@ export default function Whoami() {
           </p>
           <Link
             href="/cv"
+            onPointerDown={handleCvClick}
+            onClick={handleCvClick}
             className="mt-6 inline-flex items-center rounded-lg bg-[#C26E4B] px-6 py-3 font-lora text-[#F7EDE1] transition-colors hover:bg-[#a85e41]"
           >
             Bekijk mijn CV

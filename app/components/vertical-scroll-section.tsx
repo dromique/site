@@ -8,6 +8,9 @@ import CardStack from "./cardStack";
 gsap.registerPlugin(ScrollTrigger);
 
 const RETURN_CARD_INDEX_KEY = "home:return-card-index";
+const RETURN_ANCHOR_KEY = "home:return-anchor";
+const RETURN_MODE_KEY = "home:return-mode";
+const RETURN_APPLIED_KEY = "home:return-applied";
 
 const cards = [
           {
@@ -88,6 +91,9 @@ export default function VerticalScrollSection() {
   const scrollSectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const previousScrollRestoration = window.history.scrollRestoration;
+    window.history.scrollRestoration = "manual";
+
     const section = scrollSectionRef.current;
     if (!section) return console.error("scrollSection ref not assigned.");
 
@@ -125,21 +131,125 @@ export default function VerticalScrollSection() {
       }
     });
 
-    const savedIndex = Number(window.sessionStorage.getItem(RETURN_CARD_INDEX_KEY));
-    if (Number.isInteger(savedIndex) && savedIndex >= 0 && savedIndex < items.length) {
+    const restoreWhoAmI = () => {
+      const returnMode = window.sessionStorage.getItem(RETURN_MODE_KEY);
+      if (returnMode !== "who-am-i") return false;
+
+      const savedAnchor = window.sessionStorage.getItem(RETURN_ANCHOR_KEY);
+      if (savedAnchor !== "who-am-i") return false;
+
+      window.sessionStorage.removeItem(RETURN_MODE_KEY);
+      window.sessionStorage.removeItem(RETURN_ANCHOR_KEY);
       window.sessionStorage.removeItem(RETURN_CARD_INDEX_KEY);
+      window.sessionStorage.setItem(RETURN_APPLIED_KEY, "1");
 
       requestAnimationFrame(() => {
-        const sectionTop = section.getBoundingClientRect().top + window.scrollY;
-        window.scrollTo({
-          top: sectionTop + savedIndex * window.innerHeight,
-          behavior: "auto",
+        requestAnimationFrame(() => {
+          const whoAmISection = document.getElementById("who-am-i");
+          if (!whoAmISection) return;
+
+          const offsetTop = whoAmISection.getBoundingClientRect().top + window.scrollY - 16;
+          window.scrollTo({
+            top: Math.max(0, offsetTop),
+            behavior: "auto",
+          });
+          ScrollTrigger.refresh();
         });
-        ScrollTrigger.refresh();
       });
+
+      return true;
+    };
+
+    const restoreSavedCardIndex = () => {
+      const returnMode = window.sessionStorage.getItem(RETURN_MODE_KEY);
+      if (returnMode !== "card") return false;
+
+      const savedIndex = Number(window.sessionStorage.getItem(RETURN_CARD_INDEX_KEY));
+      if (!Number.isInteger(savedIndex) || savedIndex < 0 || savedIndex >= items.length) {
+        window.sessionStorage.removeItem(RETURN_MODE_KEY);
+        return false;
+      }
+
+      window.sessionStorage.removeItem(RETURN_MODE_KEY);
+      window.sessionStorage.removeItem(RETURN_CARD_INDEX_KEY);
+      window.sessionStorage.setItem(RETURN_APPLIED_KEY, "1");
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          ScrollTrigger.refresh();
+          const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+          const sectionTrigger = ScrollTrigger.getAll().find((trigger) => trigger.trigger === section);
+
+          let targetTop = sectionTop;
+          if (sectionTrigger && items.length > 1) {
+            const progress = savedIndex / (items.length - 1);
+            targetTop = sectionTrigger.start + (sectionTrigger.end - sectionTrigger.start) * progress;
+          } else {
+            const stepHeight = section.clientHeight || window.innerHeight;
+            targetTop = sectionTop + savedIndex * stepHeight;
+          }
+
+          window.scrollTo({
+            top: targetTop,
+            behavior: "auto",
+          });
+          ScrollTrigger.refresh();
+        });
+      });
+
+      return true;
+    };
+
+    const clearReturnState = () => {
+      window.sessionStorage.removeItem(RETURN_MODE_KEY);
+      window.sessionStorage.removeItem(RETURN_ANCHOR_KEY);
+      window.sessionStorage.removeItem(RETURN_CARD_INDEX_KEY);
+      window.sessionStorage.removeItem(RETURN_APPLIED_KEY);
+    };
+
+    const scrollToTop = () => {
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          window.scrollTo({ top: 0, behavior: "auto" });
+          ScrollTrigger.refresh();
+        });
+      });
+    };
+
+    if (restoreWhoAmI()) {
+      return () => {
+        window.history.scrollRestoration = previousScrollRestoration;
+        ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+        timeline.kill();
+      };
     }
 
+    if (!restoreSavedCardIndex()) {
+      const restoreWasApplied = window.sessionStorage.getItem(RETURN_APPLIED_KEY) === "1";
+      if (restoreWasApplied) {
+        window.sessionStorage.removeItem(RETURN_APPLIED_KEY);
+      } else {
+        clearReturnState();
+        scrollToTop();
+      }
+    }
+
+    const handlePageShow = () => {
+      if (restoreWhoAmI()) return;
+      if (restoreSavedCardIndex()) return;
+      const restoreWasApplied = window.sessionStorage.getItem(RETURN_APPLIED_KEY) === "1";
+      if (restoreWasApplied) {
+        window.sessionStorage.removeItem(RETURN_APPLIED_KEY);
+        return;
+      }
+      clearReturnState();
+      scrollToTop();
+    };
+    window.addEventListener("pageshow", handlePageShow);
+
     return () => {
+      window.history.scrollRestoration = previousScrollRestoration;
+      window.removeEventListener("pageshow", handlePageShow);
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
       timeline.kill();
     };
@@ -147,14 +257,14 @@ export default function VerticalScrollSection() {
 
   return (
     <div
-      className="scroll-section vertical-section min-h-svh bg-[#F7EDE1]"
+      className="scroll-section vertical-section min-h-svh overflow-hidden bg-[#F7EDE1]"
       ref={scrollSectionRef}
     >
-      <div className="wrapper relative h-full min-h-svh w-full overflow-hidden">
+      <div className="wrapper relative h-full min-h-svh w-full overflow-hidden bg-[#F7EDE1]">
         {cards.map((card, index) => (
           <div
             key={index}
-            className="item absolute inset-0 flex items-center justify-center px-4 py-20 sm:px-6 md:px-8"
+            className="item absolute inset-0 flex items-center justify-center px-3 py-2 sm:px-6 sm:py-10 md:px-8"
           >
             <CardStack
               title={card.title}
