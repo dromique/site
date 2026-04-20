@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
   basePath: deploymentBasePath === "/" ? undefined : deploymentBasePath,
   assetPrefix: deploymentBasePath === "/" ? undefined : deploymentBasePath,
   env: {
-    NEXT_PUBLIC_BASE_PATH: deploymentBasePath,
+    NEXT_PUBLIC_BASE_PATH: deploymentBasePath === "/" ? "" : deploymentBasePath,
   },
   images: {
     unoptimized: true,
