@@ -11,7 +11,7 @@ export default function Footer() {
                     Heeft u intresse? Neem contact met mij op! Ik zoek een stageplek voor de periode van 31 augustus 2026 t/m 22 januari 2027.
                 </p>
                 <a href="mailto:dominique.vanwaardhuizen@gmail.com" target="_blank" rel="noopener noreferrer" className="break-all text-[#C26E4B] hover:underline">E-mail: dominique.vanwaardhuizen@gmail.com</a>
-                <a href="https://www.linkedin.com/in/dominique-van-waardhuizen-b453b4389/" target="_blank" rel="noopener noreferrer" className="text-[#C26E4B] hover:underline">LinkedIn: Dominique van Waardhuizen</a>
+                <a href="https://linkedin.com/in/dromique/" target="_blank" rel="noopener noreferrer" className="text-[#C26E4B] hover:underline">LinkedIn: Dominique van Waardhuizen</a>
             </div>
 
             {/* Center Logo */}
