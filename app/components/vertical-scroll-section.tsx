@@ -17,7 +17,7 @@ const cards = [
   {
     title: "Mystery project",
     subtitle: "R3F - Semester 4",
-    description: "Een opkomend project waar ik gebruik maak van R3F.",
+    description: "Een opkomend project waarbij ik gebruik maak van R3F.",
     buttonText: "Coming soon",
     buttonLink: "#",
     brandingImage: "/img/projectCoverImages/r3fS4.png",
@@ -62,7 +62,7 @@ const cards = [
   {
     title: "Pong",
     subtitle: "Project X - Semester 2",
-    description: "Als project X heb ik een astetische versie van Pong gemaakt. Ik wilde meer ervaring met JavaScript en daarnaast vond ik het leuk om een klassiek spel een nieuwe look te geven.",
+    description: "Als project X heb ik een esthetische versie van Pong gemaakt. Ik wilde meer ervaring met JavaScript en daarnaast vond ik het leuk om een klassiek spel een nieuwe look te geven.",
     buttonText: "Speel Pong",
     buttonLink: "https://i538263.hera.fontysict.net/pong/",
     brandingImage: "/img/projectCoverImages/pongS2.png",
