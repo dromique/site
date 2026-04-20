@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { withBasePath } from "@/app/lib/with-base-path";
 
 export default function Footer() {
     return (
@@ -16,7 +17,7 @@ export default function Footer() {
             {/* Center Logo */}
             <div className="flex flex-1 items-center justify-center">
                 <Image
-                    src="/img/logo.svg"
+                    src={withBasePath("/img/logo.svg")}
                     alt="Homepage"
                     width={800}
                     height={320}

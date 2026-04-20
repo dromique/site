@@ -3,6 +3,7 @@
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
+import { withBasePath } from "@/app/lib/with-base-path";
 
 interface CardStackProps {
   title?: string;
@@ -10,6 +11,7 @@ interface CardStackProps {
   description?: string;
   buttonText?: string;
   buttonLink?: string;
+  returnCardIndex?: number;
   brandingTitle?: string;
   brandingImage?: string;
   fileColor?: string;
@@ -21,10 +23,17 @@ const CardStack: React.FC<CardStackProps> = ({
   description = "Description of the project goes here.",
   buttonText = "Lees Meer",
   buttonLink = "/project1",
+  returnCardIndex,
   brandingTitle = "",
   brandingImage,
 }) => {
   const opensInNewTab = /^https?:\/\//i.test(buttonLink);
+  const isBrandGuideLink = /^\/brandguide/i.test(buttonLink);
+
+  const handleCardClick = () => {
+    if (!isBrandGuideLink || typeof returnCardIndex !== "number") return;
+    window.sessionStorage.setItem("home:return-card-index", String(returnCardIndex));
+  };
 
   return (
     <div className="mx-auto flex h-184 w-full max-w-7xl flex-col gap-6 overflow-hidden rounded-2xl bg-[#333333] p-5 sm:h-176 sm:p-6 md:h-128 md:flex-row md:p-10">
@@ -39,6 +48,7 @@ const CardStack: React.FC<CardStackProps> = ({
         </p>
         <Link
           href={buttonLink}
+          onClick={handleCardClick}
           target={opensInNewTab ? "_blank" : undefined}
           rel={opensInNewTab ? "noopener noreferrer" : undefined}
           className="mt-auto inline-flex w-full max-w-full items-center justify-center rounded-lg bg-[#C26E4B] px-4 py-3 text-center font-lora text-sm leading-tight text-[#F7EDE1] transition-colors hover:bg-[#a85e41] sm:w-fit sm:px-5 sm:text-base"
@@ -55,7 +65,7 @@ const CardStack: React.FC<CardStackProps> = ({
         <div className="flex min-h-0 flex-1 w-full items-center justify-center">
           {brandingImage && brandingImage !== "#" ? (
             <Image
-              src={brandingImage}
+              src={withBasePath(brandingImage)}
               alt={`${title} branding image`}
               width={480}
               height={280}

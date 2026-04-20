@@ -7,6 +7,8 @@ import CardStack from "./cardStack";
 
 gsap.registerPlugin(ScrollTrigger);
 
+const RETURN_CARD_INDEX_KEY = "home:return-card-index";
+
 const cards = [
           {
     title: "Mystery project",
@@ -123,6 +125,20 @@ export default function VerticalScrollSection() {
       }
     });
 
+    const savedIndex = Number(window.sessionStorage.getItem(RETURN_CARD_INDEX_KEY));
+    if (Number.isInteger(savedIndex) && savedIndex >= 0 && savedIndex < items.length) {
+      window.sessionStorage.removeItem(RETURN_CARD_INDEX_KEY);
+
+      requestAnimationFrame(() => {
+        const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({
+          top: sectionTop + savedIndex * window.innerHeight,
+          behavior: "auto",
+        });
+        ScrollTrigger.refresh();
+      });
+    }
+
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
       timeline.kill();
@@ -131,10 +147,10 @@ export default function VerticalScrollSection() {
 
   return (
     <div
-      className="scroll-section vertical-section min-h-[100svh] bg-[#F7EDE1]"
+      className="scroll-section vertical-section min-h-svh bg-[#F7EDE1]"
       ref={scrollSectionRef}
     >
-      <div className="wrapper relative h-full min-h-[100svh] w-full overflow-hidden">
+      <div className="wrapper relative h-full min-h-svh w-full overflow-hidden">
         {cards.map((card, index) => (
           <div
             key={index}
@@ -146,6 +162,7 @@ export default function VerticalScrollSection() {
               description={card.description}
               buttonText={card.buttonText}
               buttonLink={card.buttonLink}
+              returnCardIndex={index}
               // brandingTitle={card.brandingTitle}
               brandingImage={card.brandingImage}
               fileColor={card.fileColor}

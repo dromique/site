@@ -3,6 +3,7 @@
 import { useCallback } from 'react';
 import Image from "next/image";
 import Link from "next/link";
+import { withBasePath } from "@/app/lib/with-base-path";
 
 export default function Header() {
   const scrollToFooter = useCallback(() => {
@@ -16,7 +17,7 @@ export default function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 flex h-16 items-center justify-between px-4 sm:h-[10vh] sm:px-8">
       <Link href="/" className="inline-flex h-full items-center">
         <Image
-          src="/img/logo.svg"
+          src={withBasePath("/img/logo.svg")}
           alt="Homepage"
           width={140}
           height={56}

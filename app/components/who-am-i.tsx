@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { withBasePath } from "@/app/lib/with-base-path";
 
 export default function Whoami() {
   return (
@@ -20,7 +21,7 @@ export default function Whoami() {
 
         <div className="relative aspect-4/5 w-full max-w-[320px] overflow-hidden rounded-xl md:w-[320px] md:shrink-0">
           <Image
-            src="/img/headshot.jpeg"
+            src={withBasePath("/img/headshot.jpeg")}
             alt="Portretfoto"
             fill
             sizes="(min-width: 768px) 320px, 100vw"

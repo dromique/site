@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, ReactNode } from 'react';
 import ParticleAnimation from './particle-animation';
+import { withBasePath } from '@/app/lib/with-base-path';
 
 interface AboveTheFoldProps {
   title: string;
@@ -134,7 +135,7 @@ export default function AboveTheFold({ title, subtitle, bird, beak, wings }: Abo
         muted={false}
         crossOrigin="anonymous"
       >
-        <source src="/sound/683399__joker313__robin2.wav" type="audio/wav" />
+        <source src={withBasePath('/sound/683399__joker313__robin2.wav')} type="audio/wav" />
       </audio>
       <div className="relative z-10 max-w-xl text-start">
         <h2 className="max-w-[12ch] text-4xl font-bold text-[#C26E4B] font-lora sm:text-5xl lg:text-6xl">{title}</h2>

@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { startSharedHopLoop, subscribeToSharedHop } from '@/app/components/birdMotion';
+import { withBasePath } from '@/app/lib/with-base-path';
 
 interface AnimatedBirdProps {
   src: string;
@@ -88,7 +89,7 @@ export default function AnimatedBird({
       style={hingeStyle}
     >
       <Image 
-        src={src}
+        src={withBasePath(src)}
         alt={alt}
         width={width}
         height={height}

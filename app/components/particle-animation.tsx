@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { startSharedHopLoop, subscribeToSharedHop } from '@/app/components/birdMotion';
+import { withBasePath } from '@/app/lib/with-base-path';
 
 interface Particle {
   id: number;
@@ -16,16 +17,16 @@ interface Particle {
 }
 
 const NOTE_IMAGES = [
-  '/img/notes/noot1.png',
-  '/img/notes/noot2.png',
-  '/img/notes/noot3.png',
-  '/img/notes/noot4.png',
-  '/img/notes/noot5.png',
-  '/img/notes/noot6.png',
-  '/img/notes/noot7.png',
-  '/img/notes/noot8.png',
-  '/img/notes/noot9.png',
-  '/img/notes/noot10.png',
+  withBasePath('/img/notes/noot1.png'),
+  withBasePath('/img/notes/noot2.png'),
+  withBasePath('/img/notes/noot3.png'),
+  withBasePath('/img/notes/noot4.png'),
+  withBasePath('/img/notes/noot5.png'),
+  withBasePath('/img/notes/noot6.png'),
+  withBasePath('/img/notes/noot7.png'),
+  withBasePath('/img/notes/noot8.png'),
+  withBasePath('/img/notes/noot9.png'),
+  withBasePath('/img/notes/noot10.png'),
 ];
 
 export default function ParticleAnimation() {

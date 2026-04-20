@@ -1,7 +1,8 @@
 import Image from "next/image";
+import { withBasePath } from "@/app/lib/with-base-path";
 
 export default function BrandGuideS4Page() {
-    const images = Array.from({ length: 40 }, (_, index) => `/img/brandguideS4/${index + 1}.png`);
+    const images = Array.from({ length: 40 }, (_, index) => withBasePath(`/img/brandguideS4/${index + 1}.png`));
 
     return (
         <main className="min-h-screen bg-[#F7EDE1] px-4 py-20 sm:px-6 md:px-10">
