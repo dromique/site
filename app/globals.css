@@ -13,7 +13,9 @@
 }
 
 html, body {
+  min-height: 100dvh;
   overflow-y: auto;
+  overflow-x: hidden;
   background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-inter), sans-serif;

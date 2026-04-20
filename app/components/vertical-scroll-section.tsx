@@ -257,10 +257,10 @@ export default function VerticalScrollSection() {
 
   return (
     <div
-      className="scroll-section vertical-section min-h-svh overflow-hidden bg-[#F7EDE1]"
+      className="scroll-section vertical-section min-h-dvh overflow-hidden bg-[#F7EDE1]"
       ref={scrollSectionRef}
     >
-      <div className="wrapper relative h-full min-h-svh w-full overflow-hidden bg-[#F7EDE1]">
+      <div className="wrapper relative h-full min-h-dvh w-full overflow-hidden bg-[#F7EDE1]">
         {cards.map((card, index) => (
           <div
             key={index}
