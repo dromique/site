@@ -264,7 +264,7 @@ export default function VerticalScrollSection() {
         {cards.map((card, index) => (
           <div
             key={index}
-            className="item absolute inset-0 flex items-center justify-center px-3 py-2 sm:px-6 sm:py-10 md:px-8"
+            className="item absolute inset-0 flex items-center justify-center px-3 py-2 sm:px-6 sm:py-10 md:px-8 pointer-events-none"
           >
             <CardStack
               title={card.title}

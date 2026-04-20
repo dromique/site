@@ -38,7 +38,7 @@ const CardStack: React.FC<CardStackProps> = ({
   };
 
   return (
-    <div className="mx-auto flex h-[90svh] w-full max-w-7xl flex-col gap-3 overflow-y-auto rounded-2xl bg-[#333333] p-4 sm:h-176 sm:gap-6 sm:p-6 md:h-128 md:flex-row md:overflow-hidden md:p-10">
+    <div className="mx-auto flex h-[90svh] w-full max-w-7xl flex-col gap-3 overflow-y-auto rounded-2xl bg-[#333333] p-4 sm:h-176 sm:gap-6 sm:p-6 md:h-128 md:flex-row md:overflow-hidden md:p-10 pointer-events-auto">
       {/* Left Side */}
       <div className="flex min-h-0 min-w-0 flex-[1.45] flex-col gap-4 md:h-full">
         <h1 className="max-w-full wrap-break-word font-lora text-2xl text-[#C26E4B] sm:text-4xl md:text-5xl">{title}</h1>
