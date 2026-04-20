@@ -7,8 +7,8 @@ const deploymentBasePath =
 
 const nextConfig: NextConfig = {
   output: "export",
-  basePath: deploymentBasePath,
-  assetPrefix: deploymentBasePath,
+  basePath: deploymentBasePath === "/" ? undefined : deploymentBasePath,
+  assetPrefix: deploymentBasePath === "/" ? undefined : deploymentBasePath,
   env: {
     NEXT_PUBLIC_BASE_PATH: deploymentBasePath,
   },
