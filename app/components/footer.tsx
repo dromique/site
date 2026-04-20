@@ -30,7 +30,7 @@ export default function Footer() {
             <div className="flex flex-1 flex-col items-start justify-start gap-4 text-start md:pt-10 lg:pt-14">
                 <h3 className="font-lora text-2xl text-[#C26E4B] sm:text-3xl">Gevolgde semesters</h3>
                 <p className="text-sm leading-relaxed text-[#F7EDE1] font-inter sm:text-base">
-                    Semester 1 - Orientatie <br />
+                    Semester 1 - Oriëntatie <br />
                     Semester 2 - Interactive Media <br />
                     Semester 3 - Front End Development <br />
                     Semester 4 - Media Creation <br />

@@ -1,14 +1,16 @@
 import type { NextConfig } from "next";
 
-const deploymentBasePath = process.env.CI === "true" ? "/site" : "/s4/portfolio";
-const isProduction = process.env.NODE_ENV === "production";
+const manualDeploymentBasePath = "/s4/portfolio";
+const deploymentBasePath =
+  process.env.NEXT_PUBLIC_BASE_PATH ??
+  (process.env.NODE_ENV === "production" ? manualDeploymentBasePath : "");
 
 const nextConfig: NextConfig = {
   output: "export",
-  basePath: isProduction ? deploymentBasePath : "",
-  assetPrefix: isProduction ? deploymentBasePath : "",
+  basePath: deploymentBasePath,
+  assetPrefix: deploymentBasePath,
   env: {
-    NEXT_PUBLIC_BASE_PATH: isProduction ? deploymentBasePath : "",
+    NEXT_PUBLIC_BASE_PATH: deploymentBasePath,
   },
   images: {
     unoptimized: true,
