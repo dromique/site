@@ -258,7 +258,7 @@ export default function VerticalScrollSection() {
 
   return (
     <div
-      className="scroll-section vertical-section h-svh overflow-hidden bg-[#F7EDE1]"
+      className="scroll-section vertical-section h-dvh overflow-hidden bg-[#F7EDE1]"
       ref={scrollSectionRef}
     >
       <div className="wrapper relative h-full w-full overflow-hidden bg-[#F7EDE1]">
