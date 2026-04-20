@@ -24,6 +24,8 @@ const CardStack: React.FC<CardStackProps> = ({
   brandingTitle = "",
   brandingImage,
 }) => {
+  const opensInNewTab = /^https?:\/\//i.test(buttonLink);
+
   return (
     <div className="mx-auto flex h-184 w-full max-w-7xl flex-col gap-6 overflow-hidden rounded-2xl bg-[#333333] p-5 sm:h-176 sm:p-6 md:h-128 md:flex-row md:p-10">
       {/* Left Side */}
@@ -37,6 +39,8 @@ const CardStack: React.FC<CardStackProps> = ({
         </p>
         <Link
           href={buttonLink}
+          target={opensInNewTab ? "_blank" : undefined}
+          rel={opensInNewTab ? "noopener noreferrer" : undefined}
           className="mt-auto inline-flex w-full max-w-full items-center justify-center rounded-lg bg-[#C26E4B] px-4 py-3 text-center font-lora text-sm leading-tight text-[#F7EDE1] transition-colors hover:bg-[#a85e41] sm:w-fit sm:px-5 sm:text-base"
         >
           {buttonText}

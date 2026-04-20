@@ -9,7 +9,7 @@ export default function Footer() {
                 <p className="max-w-prose text-[#F7EDE1] font-inter leading-relaxed text-sm sm:text-base">
                     Heeft u intresse? Neem contact met mij op! Ik zoek een stageplek voor de periode van 31 augustus 2026 t/m 22 januarie 2027.
                 </p>
-                <a href="mailto:dominique.vanwaardhuizen@gmail.com" className="break-all text-[#C26E4B] hover:underline">E-mail: dominique.vanwaardhuizen@gmail.com</a>
+                <a href="mailto:dominique.vanwaardhuizen@gmail.com" target="_blank" rel="noopener noreferrer" className="break-all text-[#C26E4B] hover:underline">E-mail: dominique.vanwaardhuizen@gmail.com</a>
                 <a href="https://www.linkedin.com/in/dominique-van-waardhuizen-b453b4389/" target="_blank" rel="noopener noreferrer" className="text-[#C26E4B] hover:underline">LinkedIn: Dominique van Waardhuizen</a>
             </div>
 

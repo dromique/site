@@ -1,16 +1,18 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import { startSharedHopLoop, subscribeToSharedHop } from '@/app/components/birdMotion';
 
 interface Particle {
   id: number;
   duration: number;
-  delay: number;
+  startProgress: number;
   amplitude: number;
   frequency: number;
   noteImage: number; // 1-10
+  startX: number;
+  startY: number;
 }
 
 const NOTE_IMAGES = [
@@ -29,6 +31,27 @@ const NOTE_IMAGES = [
 export default function ParticleAnimation() {
   const [particles, setParticles] = useState<Particle[]>([]);
   const [isHopping, setIsHopping] = useState(false);
+  const removalTimeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([]);
+
+  const createParticle = (id: number, startProgress = 0): Particle => ({
+    id,
+    duration: Math.random() * 4 + 8,
+    startProgress,
+    amplitude: Math.random() * 60 + 30,
+    frequency: Math.random() * 1,
+    noteImage: Math.floor(Math.random() * NOTE_IMAGES.length),
+    startX: Math.random() * 56 - 18,
+    startY: Math.random() * 28 - 12,
+  });
+
+  const scheduleRemoval = (particle: Particle) => {
+    const lifetimeMs = particle.duration * 1000 * (1 - particle.startProgress) + 250;
+    const removalTimeout = setTimeout(() => {
+      setParticles((current) => current.filter((item) => item.id !== particle.id));
+    }, lifetimeMs);
+
+    removalTimeoutsRef.current.push(removalTimeout);
+  };
 
   useEffect(() => {
     const unsubscribe = subscribeToSharedHop(setIsHopping);
@@ -41,32 +64,24 @@ export default function ParticleAnimation() {
 
   useEffect(() => {
     // Generate initial particles with sequential staggering to prevent overlap
-    const initialParticles: Particle[] = Array.from({ length: 8 }, (_, i) => ({
-      id: i,
-      duration: Math.random() * 4 + 8, // 8-12 seconds
-      delay: i * 0.6, // Sequential stagger: 0s, 0.6s, 1.2s, etc.
-      amplitude: Math.random() * 60 + 30, // 30-90px wave amplitude
-      frequency: Math.random() * 1 , // 1-2 oscillations
-      noteImage: Math.floor(Math.random() * NOTE_IMAGES.length),
-    }));
+    const initialParticles: Particle[] = Array.from({ length: 8 }, (_, i) => createParticle(i, Math.random() * 0.7 + 0.15));
     setParticles(initialParticles);
+    initialParticles.forEach(scheduleRemoval);
 
     // Spawn new particles periodically with stagger
     const spawnInterval = setInterval(() => {
       setParticles((prev) => {
-        const newParticle: Particle = {
-          id: Math.max(...prev.map((p) => p.id), -1) + 1,
-          duration: Math.random() * 4 + 8,
-          delay: 0.6, // Minimum delay to prevent immediate overlap
-          amplitude: Math.random() * 60 + 30,
-          frequency: Math.random() * 1 , // 1-2 oscillations
-          noteImage: Math.floor(Math.random() * NOTE_IMAGES.length),
-        };
+        const newParticle = createParticle(Math.max(...prev.map((p) => p.id), -1) + 1, 0);
+        scheduleRemoval(newParticle);
         return [...prev, newParticle];
       });
     }, 1200); // Spawn every 1.2 seconds to prevent overlap
 
-    return () => clearInterval(spawnInterval);
+    return () => {
+      clearInterval(spawnInterval);
+      removalTimeoutsRef.current.forEach((timeoutId) => clearTimeout(timeoutId));
+      removalTimeoutsRef.current = [];
+    };
   }, []);
 
   const anchorPositionClass =
@@ -111,12 +126,12 @@ export default function ParticleAnimation() {
 
           .particle-${p.id} {
             animation: particleFloat ${p.duration}s ease-in forwards;
-            animation-delay: ${p.delay}s;
+            animation-delay: -${(p.duration * p.startProgress).toFixed(2)}s;
           }
 
           .particle-wave-${p.id} {
             animation: particleWave${p.id} ${p.duration}s ease-in-out forwards;
-            animation-delay: ${p.delay}s;
+            animation-delay: -${(p.duration * p.startProgress).toFixed(2)}s;
           }
         `
           )
@@ -128,8 +143,8 @@ export default function ParticleAnimation() {
           key={particle.id}
           className={`particle-${particle.id} absolute`}
           style={{
-            left: '0',
-            top: '0',
+            left: `${particle.startX}px`,
+            top: `${particle.startY}px`,
             width: 'clamp(1.25rem, 4vw, 2.5rem)',
             height: 'clamp(1.25rem, 4vw, 2.5rem)',
           }}
