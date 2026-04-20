@@ -113,7 +113,6 @@ export default function VerticalScrollSection() {
       scrollTrigger: {
         trigger: section,
         pin: true,
-        pinType: "fixed",
         start: "top top",
         end: () => `+=${(items.length - 1) * 100}%`,
         scrub: 1,
