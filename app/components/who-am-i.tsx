@@ -21,7 +21,7 @@ export default function Whoami() {
         <div className="flex-1">
           <h2 className="text-4xl text-[#C26E4B] font-lora">Wie ben ik</h2>
           <p className="mt-4 text-[#F7EDE1] font-inter text-justify leading-relaxed">
-            Ik ben een student ICT & Media Design aan Fontys Hogescholen en momenteel bezig met mijn vierde semester, waarin ik me richt op Media Creation. Mijn interesse ligt in het ontwerpen en bouwen van digitale producten, van idee tot uitvoering. Ik vind het motiverend om te zien hoe een concept tot leven komt op het scherm en kijk ernaar uit om mijn kennis en vaardigheden verder te ontwikkelen binnen dit vakgebied.
+            Ik ben een student ICT & Media Design aan Fontys Hogescholen en momenteel bezig met mijn vierde semester, waarin ik me richt op Media Creation. Mijn interesse ligt in het ontwerpen en bouwen van digitale producten, van idee tot uitvoering. Ik heb daarbij een sterke interesse in front-end development en vind het leuk om interactieve en visueel aantrekkelijke user experiences te creëren. Het motiveert mij om te zien hoe een concept tot leven komt op het scherm, en ik kijk ernaar uit om mijn kennis en vaardigheden binnen dit vakgebied verder te ontwikkelen.
           </p>
           <Link
             href="/cv"
