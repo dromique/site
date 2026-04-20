@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import React from "react";
 import Image from "next/image";
 import { withBasePath } from "@/app/lib/with-base-path";
@@ -29,6 +28,7 @@ const CardStack: React.FC<CardStackProps> = ({
 }) => {
   const opensInNewTab = /^https?:\/\//i.test(buttonLink);
   const isBrandGuideLink = /^\/brandguide/i.test(buttonLink);
+  const href = opensInNewTab ? buttonLink : withBasePath(buttonLink);
 
   const handleCardClick = () => {
     if (!isBrandGuideLink || typeof returnCardIndex !== "number") return;
@@ -48,8 +48,8 @@ const CardStack: React.FC<CardStackProps> = ({
         <p className="min-h-0 flex-1 text-[0.82rem] leading-relaxed text-[#F7EDE1] font-inter sm:text-base md:text-lg lg:text-xl">
           {description}
         </p>
-        <Link
-          href={buttonLink}
+        <a
+          href={href}
           onPointerDown={handleCardClick}
           onClick={handleCardClick}
           target={opensInNewTab ? "_blank" : undefined}
@@ -57,7 +57,7 @@ const CardStack: React.FC<CardStackProps> = ({
           className="mt-auto inline-flex w-full max-w-full items-center justify-center rounded-lg bg-[#C26E4B] px-4 py-3 text-center font-lora text-sm leading-tight text-[#F7EDE1] transition-colors hover:bg-[#a85e41] sm:w-fit sm:px-5 sm:text-base"
         >
           {buttonText}
-        </Link>
+        </a>
       </div>
 
       {/* Right Side */}

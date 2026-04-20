@@ -2,7 +2,6 @@
 
 import { useCallback } from 'react';
 import Image from "next/image";
-import Link from "next/link";
 import { withBasePath } from "@/app/lib/with-base-path";
 
 export default function Header() {
@@ -15,7 +14,7 @@ export default function Header() {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 flex h-16 items-center justify-between px-4 sm:h-[10vh] sm:px-8">
-      <Link href="/" className="inline-flex h-full items-center">
+      <a href={withBasePath("/")} className="inline-flex h-full items-center">
         <Image
           src={withBasePath("/img/logo.svg")}
           alt="Homepage"
@@ -24,7 +23,7 @@ export default function Header() {
           className="h-9 w-auto sm:h-[70%]"
           priority
         />
-      </Link>
+      </a>
       {/* <button 
         onClick={scrollToFooter}
         className="text-[#C26E4B] hover:text-[#a85e41] transition-colors text-lg font-lora"
