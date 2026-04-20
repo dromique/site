@@ -40,7 +40,7 @@ const cards = [
     subtitle: "Flipdot display - Semester 3",
     description: "Een Tamagotchi gemaakt in groepsverband voor een flipdot display. Tamafishy is gemaakt om de werknemers in het kantoor van OWOW te stimuleren om taken te voltooien op een interactieve manier.",
     buttonText: "Zeg hallo tegen Tamafishy",
-    buttonLink: "#",
+    buttonLink: "https://i538263.hera.fontysict.net/s3/tamafishy/",
     brandingImage: "/img/projectCoverImages/tamafishyS3.png",
     fileColor: "#fff",
   },
