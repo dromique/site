@@ -104,11 +104,12 @@ export default function VerticalScrollSection() {
     const items = wrapper.querySelectorAll(".item");
     if (!items.length) return console.warn("No .item elements found.");
 
-    // Initial position setup
+    // Beginning position setup
     items.forEach((item, i) => {
       if (i !== 0) gsap.set(item, { yPercent: 100 });
     });
 
+    // Decides how the cards will scroll
     const timeline = gsap.timeline({
       scrollTrigger: {
         trigger: section,
@@ -121,17 +122,19 @@ export default function VerticalScrollSection() {
       defaults: { ease: "none" },
     });
 
+    // The actual scroll animation
     items.forEach((item, index) => {
       if (items[index + 1]) {
         timeline.to(item, { scale: 0.9, borderRadius: "10px" });
         timeline.to(
           items[index + 1],
           { yPercent: 0 },
-          "<" // sync start
+          "<" // sync both current and next card animations
         );
       }
     });
 
+    // When going back from who am I to index, scroll to who am I 
     const restoreWhoAmI = () => {
       const returnMode = window.sessionStorage.getItem(RETURN_MODE_KEY);
       if (returnMode !== "who-am-i") return false;
@@ -161,6 +164,7 @@ export default function VerticalScrollSection() {
       return true;
     };
 
+    // When going back from a card to index, scroll back to original card
     const restoreSavedCardIndex = () => {
       const returnMode = window.sessionStorage.getItem(RETURN_MODE_KEY);
       if (returnMode !== "card") return false;
@@ -202,6 +206,7 @@ export default function VerticalScrollSection() {
       return true;
     };
 
+    // Clear the return state of the cards and who am I
     const clearReturnState = () => {
       window.sessionStorage.removeItem(RETURN_MODE_KEY);
       window.sessionStorage.removeItem(RETURN_ANCHOR_KEY);
@@ -209,6 +214,7 @@ export default function VerticalScrollSection() {
       window.sessionStorage.removeItem(RETURN_APPLIED_KEY);
     };
 
+    // Scroll to the top of the page and refresh ScrollTrigger
     const scrollToTop = () => {
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
@@ -218,6 +224,7 @@ export default function VerticalScrollSection() {
       });
     };
 
+    // Check if go back tho who am I or card, if not scroll to the thop and clear return state
     const handlePageShow = () => {
       if (restoreWhoAmI()) return;
       if (restoreSavedCardIndex()) return;
@@ -231,6 +238,7 @@ export default function VerticalScrollSection() {
     };
     window.addEventListener("pageshow", handlePageShow);
 
+    // Reset to default scroll settings, delete GSAP animation
     const cleanup = () => {
       window.history.scrollRestoration = previousScrollRestoration;
       window.removeEventListener("pageshow", handlePageShow);
@@ -242,6 +250,7 @@ export default function VerticalScrollSection() {
       return cleanup;
     }
 
+    // Check for card restore, if not possible, did it already happen? Else scroll to the top
     if (!restoreSavedCardIndex()) {
       const restoreWasApplied = window.sessionStorage.getItem(RETURN_APPLIED_KEY) === "1";
       if (restoreWasApplied) {
@@ -256,6 +265,7 @@ export default function VerticalScrollSection() {
   }, []);
 
   return (
+    // Stack cards for scroll-based GSAP
     <div
       className="scroll-section vertical-section h-lvh overflow-hidden bg-[#F7EDE1]"
       ref={scrollSectionRef}

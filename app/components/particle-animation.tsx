@@ -11,7 +11,7 @@ interface Particle {
   startProgress: number;
   amplitude: number;
   frequency: number;
-  noteImage: number; // 1-10
+  noteImage: number; // 0-9
   startX: number;
   startY: number;
 }
@@ -34,6 +34,7 @@ export default function ParticleAnimation() {
   const [isHopping, setIsHopping] = useState(false);
   const removalTimeoutsRef = useRef<ReturnType<typeof setTimeout>[]>([]);
 
+  // Create a music note with random properties 
   const createParticle = (id: number, startProgress = 0): Particle => ({
     id,
     duration: Math.random() * 4 + 8,
@@ -45,6 +46,7 @@ export default function ParticleAnimation() {
     startY: Math.random() * 28 - 12,
   });
 
+  // Calculates lifespan of music notes, afterwards deletes music note
   const scheduleRemoval = (particle: Particle) => {
     const lifetimeMs = particle.duration * 1000 * (1 - particle.startProgress) + 250;
     const removalTimeout = setTimeout(() => {
@@ -54,6 +56,7 @@ export default function ParticleAnimation() {
     removalTimeoutsRef.current.push(removalTimeout);
   };
 
+  // Subscribe to shared hop
   useEffect(() => {
     const unsubscribe = subscribeToSharedHop(setIsHopping);
     startSharedHopLoop();
@@ -64,20 +67,21 @@ export default function ParticleAnimation() {
   }, []);
 
   useEffect(() => {
-    // Generate initial particles with sequential staggering to prevent overlap
+    // Generate first music notes at different starting points
     const initialParticles: Particle[] = Array.from({ length: 8 }, (_, i) => createParticle(i, Math.random() * 0.7 + 0.15));
     setParticles(initialParticles);
     initialParticles.forEach(scheduleRemoval);
 
-    // Spawn new particles periodically with stagger
+    // create new music notes everry 1.2s at the starting point
     const spawnInterval = setInterval(() => {
       setParticles((prev) => {
         const newParticle = createParticle(Math.max(...prev.map((p) => p.id), -1) + 1, 0);
         scheduleRemoval(newParticle);
         return [...prev, newParticle];
       });
-    }, 1200); // Spawn every 1.2 seconds to prevent overlap
+    }, 1200); // Spawn every 1.2 seconds
 
+    // deletes (future) actions after unmount
     return () => {
       clearInterval(spawnInterval);
       removalTimeoutsRef.current.forEach((timeoutId) => clearTimeout(timeoutId));
@@ -85,6 +89,7 @@ export default function ParticleAnimation() {
     };
   }, []);
 
+  //Adjusts begin position of notes based on whether the bird is hopping or not
   const anchorPositionClass =
     isHopping
       ? 'bottom-4 sm:bottom-[calc(2.5vw+0.625vw)]'
@@ -94,6 +99,7 @@ export default function ParticleAnimation() {
     <div
       className={`pointer-events-none absolute right-3 overflow-visible transition-all duration-500 sm:right-[2.5vw] ${anchorPositionClass} w-[42vw] max-w-[480px] aspect-480/547 sm:w-[480px]`}
     >
+      // Inline CSS for animation notes
       <style>{`
         @keyframes particleFloat {
           0% {
@@ -106,6 +112,7 @@ export default function ParticleAnimation() {
           }
         }
 
+        // Animate sinus movement of notes
         ${particles
           .map(
             (p) => `
@@ -140,6 +147,7 @@ export default function ParticleAnimation() {
       `}</style>
 
       {particles.map((particle) => (
+        // Load note at random start position
         <div
           key={particle.id}
           className={`particle-${particle.id} absolute`}
@@ -150,6 +158,7 @@ export default function ParticleAnimation() {
             height: 'clamp(1.25rem, 4vw, 2.5rem)',
           }}
         >
+          // for sinus movement
           <div className={`particle-wave-${particle.id} h-full w-full`}>
             <Image 
               src={NOTE_IMAGES[particle.noteImage]}

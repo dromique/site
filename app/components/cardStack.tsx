@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { withBasePath } from "@/app/lib/with-base-path";
 
+// Define the props for the CardStack component
 interface CardStackProps {
   title?: string;
   subtitle?: string;
@@ -16,20 +17,23 @@ interface CardStackProps {
   fileColor?: string;
 }
 
+// Default values for props of CardStack component
 const CardStack: React.FC<CardStackProps> = ({
-  title = "Project 1",
-  subtitle = "Boris Schmidt",
+  title = "Project",
+  subtitle = "Semester",
   description = "Description of the project goes here.",
   buttonText = "Lees Meer",
-  buttonLink = "/project1",
+  buttonLink = "/cv",
   returnCardIndex,
   brandingTitle = "",
-  brandingImage,
+  brandingImage = "",
 }) => {
+  // Checks if the button link is an external website or an internal page
   const opensInNewTab = /^https?:\/\//i.test(buttonLink);
   const isBrandGuideLink = /^\/brandguide/i.test(buttonLink);
   const href = opensInNewTab ? buttonLink : withBasePath(buttonLink);
 
+  //Remmembers which card was clicked, so when going back to index, it scrolls back to the right card
   const handleCardClick = () => {
     if (!isBrandGuideLink || typeof returnCardIndex !== "number") return;
     window.sessionStorage.setItem("home:return-mode", "card");
@@ -39,7 +43,7 @@ const CardStack: React.FC<CardStackProps> = ({
 
   return (
     <div className="mx-auto flex h-[90svh] w-full max-w-7xl flex-col gap-3 overflow-y-auto rounded-2xl bg-[#333333] p-4 sm:h-176 sm:gap-6 sm:p-6 md:h-128 md:flex-row md:overflow-hidden md:p-10 pointer-events-auto">
-      {/* Left Side */}
+      {/* Title, subtitle and description */}
       <div className="flex min-h-0 min-w-0 flex-[1.45] flex-col gap-4 md:h-full">
         <h1 className="max-w-full wrap-break-word font-lora text-2xl text-[#C26E4B] sm:text-4xl md:text-5xl">{title}</h1>
         <h2 className="wrap-break-word font-lora text-lg text-[#C26E4B] sm:text-2xl md:text-[1.85rem]">
@@ -59,7 +63,7 @@ const CardStack: React.FC<CardStackProps> = ({
         </a>
       </div>
 
-      {/* Right Side */}
+      {/* Image and branding title */}
       <div className="flex min-h-0 min-w-0 flex-[1.15] flex-col gap-4 md:h-full">
         <h1 className="wrap-break-word font-lora text-2xl text-[#C26E4B] sm:text-3xl md:text-4xl">
           {brandingTitle}

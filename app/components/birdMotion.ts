@@ -1,14 +1,17 @@
 'use client';
 
+// This file contains the shared hopping logic for all bird components, it gives a shared state and a subsription mechanism, so that all bird components can react to the same hop events
 type HopSubscriber = (value: boolean) => void;
 
 const hopSubscribers = new Set<HopSubscriber>();
 let hopLoopStarted = false;
 
+// Broadcast the current hop state to all subscribers
 const broadcastHopState = (value: boolean) => {
   hopSubscribers.forEach((notify) => notify(value));
 };
 
+// Components can subsribe to hop events, and they will receive an update when a hop occurs
 export const subscribeToSharedHop = (subscriber: HopSubscriber) => {
   hopSubscribers.add(subscriber);
   return () => {
@@ -16,6 +19,7 @@ export const subscribeToSharedHop = (subscriber: HopSubscriber) => {
   };
 };
 
+// Start a loop that randomly triggers the hop event between 1 and 8 seconds
 export const startSharedHopLoop = () => {
   if (hopLoopStarted) return;
   hopLoopStarted = true;

@@ -17,7 +17,7 @@ export default function Header() {
       <a href={withBasePath("/")} className="inline-flex h-full items-center">
         <Image
           src={withBasePath("/img/logo.svg")}
-          alt="Homepage"
+          alt="Logo"
           width={140}
           height={56}
           className="h-9 w-auto sm:h-[70%]"

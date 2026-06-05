@@ -25,6 +25,7 @@ export default function AnimatedBird({
   const [wingTiltsDown, setWingTiltsDown] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
 
+  // Subscribe to shared hop loop and start the loop on mount
   useEffect(() => {
     const unsubscribe = subscribeToSharedHop(setIsHopping);
     startSharedHopLoop();
@@ -34,6 +35,7 @@ export default function AnimatedBird({
     };
   }, []);
 
+  // Randomly timed hinge animations for wing or underbeak
   useEffect(() => {
     if (motionType === 'base') return;
 
@@ -60,11 +62,13 @@ export default function AnimatedBird({
     };
   }, [motionType]);
 
+  // Checks base position based on hopping state
   const basePositionClass =
     isHopping
       ? 'bottom-4 sm:bottom-[calc(2.5vw+0.625vw)]'
       : 'bottom-3 sm:bottom-[2.5vw]';
 
+  // Is wing animating? Is it true it tilts down? yes> rotate 1deg, no> rotate -1.5deg
   const hingeClass =
     motionType === 'wing'
       ? isHingeAnimating
@@ -74,6 +78,7 @@ export default function AnimatedBird({
         : 'origin-top-left rotate-0'
       : '';
 
+  // Inline CSS for skew animation of the beak hinge
   const underbeakSkewDeg = 0.25;
   const hingeStyle =
     motionType === 'underbeak'

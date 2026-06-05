@@ -20,6 +20,7 @@ export default function AboveTheFold({ title, subtitle, bird, beak, wings }: Abo
   const sequenceRunningRef = useRef(false);
   const [isPlaying, setIsPlaying] = useState(false);
 
+  // Clear audio timers to prevent overlap
   const clearAudioTimers = () => {
     if (fadeIntervalRef.current) {
       clearInterval(fadeIntervalRef.current);
@@ -31,6 +32,7 @@ export default function AboveTheFold({ title, subtitle, bird, beak, wings }: Abo
     }
   };
 
+  // Fade audio volume to the target level over a specified duration
   const fadeTo = (targetVolume: number, durationMs: number) => {
     const audio = audioRef.current;
     if (!audio) return;
@@ -55,6 +57,7 @@ export default function AboveTheFold({ title, subtitle, bird, beak, wings }: Abo
     }, Math.max(Math.floor(durationMs / steps), 20));
   };
 
+  // Play the audio once with fade-in and schedule fade-out before it ends
   const playOnceWithFade = async () => {
     const audio = audioRef.current;
     if (!audio) return;
@@ -103,6 +106,7 @@ export default function AboveTheFold({ title, subtitle, bird, beak, wings }: Abo
     };
   }, []);
 
+  // Check if audio is not loaded or already playing
   const handleInteraction = async () => {
     const audio = audioRef.current;
     if (!audio || sequenceRunningRef.current) return;
@@ -111,6 +115,7 @@ export default function AboveTheFold({ title, subtitle, bird, beak, wings }: Abo
     setIsPlaying(true);
     audio.loop = false;
 
+    // Play the audio twice with fade effects
     try {
       await playOnceWithFade();
       await playOnceWithFade();
