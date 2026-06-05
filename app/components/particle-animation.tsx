@@ -99,7 +99,7 @@ export default function ParticleAnimation() {
     <div
       className={`pointer-events-none absolute right-3 overflow-visible transition-all duration-500 sm:right-[2.5vw] ${anchorPositionClass} w-[42vw] max-w-[480px] aspect-480/547 sm:w-[480px]`}
     >
-      // Inline CSS for animation notes
+      {/* Inline CSS for animation notes en Animate sinus movement of notes */}
       <style>{`
         @keyframes particleFloat {
           0% {
@@ -112,7 +112,6 @@ export default function ParticleAnimation() {
           }
         }
 
-        // Animate sinus movement of notes
         ${particles
           .map(
             (p) => `
@@ -158,7 +157,7 @@ export default function ParticleAnimation() {
             height: 'clamp(1.25rem, 4vw, 2.5rem)',
           }}
         >
-          // for sinus movement
+          {/* for sinus movement */}
           <div className={`particle-wave-${particle.id} h-full w-full`}>
             <Image 
               src={NOTE_IMAGES[particle.noteImage]}

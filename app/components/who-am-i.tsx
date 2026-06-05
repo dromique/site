@@ -16,7 +16,6 @@ const handleCvClick = () => {
 export default function Whoami() {
   return (
     <section id="who-am-i" className="min-h-[50vh] bg-[#333333] px-6 py-12 md:px-10">
-      // Who am I section
       <div className="mx-auto flex w-full max-w-6xl flex-col items-center gap-10 md:flex-row md:items-start md:gap-12">
         <div className="flex-1">
           <h2 className="text-4xl text-[#C26E4B] font-lora">Wie ben ik</h2>
@@ -31,8 +30,7 @@ export default function Whoami() {
             Bekijk mijn CV
           </a>
         </div>
-
-        // Portrait photo
+        
         <div className="relative aspect-4/5 w-full max-w-[320px] overflow-hidden rounded-xl md:w-[320px] md:shrink-0">
           <Image
             src={withBasePath("/img/headshot.jpeg")}
@@ -47,4 +45,4 @@ export default function Whoami() {
       </div>
     </section>
   );
-}
+} 
