@@ -15,20 +15,11 @@ const RETURN_APPLIED_KEY = "home:return-applied";
 
 const cards = [
   {
-    title: "Mystery project",
-    subtitle: "R3F - Semester 4",
-    description: "Een opkomend project waarbij ik gebruik maak van R3F.",
-    buttonText: "Coming soon",
-    buttonLink: "#",
-    brandingImage: "/img/projectCoverImages/r3fS4.png",
-    fileColor: "#fff",
-  },
-  {
     title: "Flight Of The Silverbird",
     subtitle: "Interactive visuals - Semester 4",
-    description: "Een huidig project waarbij ik in groepsverband interactieve visuals maak voor het opkomende optreden van Harmonie L'Union Fraternelle, met behulp van DaVinci Resolve en Vertex.",
-    buttonText: "Kom naar het optreden op 31 mei",
-    buttonLink: "https://www.deschalm.com/nl/programma/harmonie-slagwerkgroep-l-union-fraternelle-j3ts",
+    description: "Een project waarbij ik in groepsverband interactieve visuals heb gemaakt voor het optreden van Harmonie L'Union Fraternelle op 31 mei 2026, met behulp van DaVinci Resolve en Vertex.",
+    buttonText: "Bekijk Flight of the Silverbird",
+    buttonLink: "/flightOfTheSilverbirdS4",
     brandingImage: "/img/projectCoverImages/flightOfTheSilverbirdS4.png",
     fileColor: "#fff",
   },
