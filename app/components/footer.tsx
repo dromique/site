@@ -34,7 +34,7 @@ export default function Footer() {
                     <li>Semester 2 - Interactive Media</li>
                     <li>Semester 3 - Front End Development</li>
                     <li>Semester 4 - Media Creation</li>
-                    <li>Semester 5 - Smart mobile</li>
+                    <li>Semester 5 - Smart Mobile</li>
                 </ul>
             </div>
         </footer>
