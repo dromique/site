@@ -8,7 +8,7 @@ export default function Footer() {
             <div className="flex flex-1 flex-col items-start justify-start gap-4 text-start md:pt-10 lg:pt-14">                
                 <h3 className="font-lora text-2xl text-[#C26E4B] sm:text-3xl">Meeloop stage</h3>
                 <p className="max-w-prose text-[#F7EDE1] font-inter leading-relaxed text-sm sm:text-base">
-                    Heeft u interesse? Neem contact met mij op! Ik zoek een stageplek voor de periode van feburari 2027 t/m juni 2027.
+                    Heeft u interesse? Neem contact met mij op! Ik zoek een stageplek voor de periode vanaf 15 feburari 2027 t/m 9 juli 2027.
                 </p>
                 <a href="mailto:dominique.vanwaardhuizen@gmail.com" target="_blank" rel="noopener noreferrer" className="break-all text-[#C26E4B] hover:underline">E-mail: dominique.vanwaardhuizen@gmail.com</a>
                 <a href="https://linkedin.com/in/dromique/" target="_blank" rel="noopener noreferrer" className="text-[#C26E4B] hover:underline">LinkedIn: Dominique van Waardhuizen</a>

@@ -1,6 +1,6 @@
 import { withBasePath } from "@/app/lib/with-base-path";
 
-export default function CvPage() {
+export default function flightOfTheSilverbirdS4() {
 	return (
 		<main className="min-h-screen bg-[#F7EDE1] px-4 py-20 sm:px-6 md:px-10">
 			<div className="mx-auto flex w-full max-w-6xl flex-col gap-4">

@@ -15,6 +15,33 @@ const RETURN_APPLIED_KEY = "home:return-applied";
 
 const cards = [
   {
+    title: "Rest For More",
+    subtitle: "Neem een moment en leg je telefoon weg - Semester 5",
+    description: "Een huidig project waarbij ik in groepsverband een Flutter-app ontwikkel voor Rest For More om de gebruiker te helpen om meer rust te vinden in hun dagelijkse leven door hun telefoon weg te leggen.",
+    buttonText: "Ontmoet Rest For More",
+    buttonLink: "https://restformore.nl/",
+    brandingImage: "/img/projectCoverImages/restformoreS5.png",
+    fileColor: "#fff",
+  },
+    {
+    title: "To be announced",
+    subtitle: "Persooneelstekort in de gezondheidszorg - Semester 5",
+    description: "Een huidig eigen project waarbij ik een Flutter-app ontwikkel om te helpen bij het verminderen van het personeelstekort in de gezondheidszorg.",
+    buttonText: "To be announced",
+    buttonLink: "#",
+    brandingImage: "/img/projectCoverImages/questionMark.png",
+    fileColor: "#fff",
+  },
+    {
+    title: "Meten Weten",
+    subtitle: "Gezondheid en technologie - Semester 5",
+    description: "Een eigen project waarbij ik een Flutter-app heb gemaakt voor mensen ouder dan 80 jaar waar zij hun metingen in kunnen voeren om te kijken wat hun waardes inhouden.",
+    buttonText: "Bekijk Demo Meten Weten",
+    buttonLink: "/metenWetenS5",
+    brandingImage: "/img/projectCoverImages/metenwetenS5.png",
+    fileColor: "#fff",
+  },
+  {
     title: "Flight Of The Silverbird",
     subtitle: "Interactive visuals - Semester 4",
     description: "Een project waarbij ik in groepsverband interactieve visuals heb gemaakt voor het optreden van Harmonie L'Union Fraternelle op 31 mei 2026, met behulp van DaVinci Resolve en Vertex.",
