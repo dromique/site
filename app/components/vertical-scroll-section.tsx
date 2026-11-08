@@ -20,7 +20,7 @@ const cards = [
     description: "Een huidig eigen project waarbij ik een Flutter-app ontwikkel om te helpen bij het verminderen van het personeelstekort in de gezondheidszorg.",
     buttonText: "To be announced",
     buttonLink: "#",
-    brandingImage: "/img/projectCoverImages/questionMark.png",
+    brandingImage: "/img/projectCoverImages/questionmark.png",
     fileColor: "#fff",
   },
   {
