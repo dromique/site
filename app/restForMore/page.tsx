@@ -6,7 +6,7 @@ export default function restForMore() {
 			<div className="mx-auto flex w-full max-w-6xl flex-col gap-4">
 				<div className="overflow-hidden rounded-xl border border-black/10 bg-white shadow-lg">
 					{/* Embed video in page */}
-					<iframe className="h-[72svh] w-full sm:h-[78svh] md:h-[85vh]" src="https://www.youtube.com/embed/BznpY-ztlec" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+					<iframe className="h-[72svh] w-full sm:h-[78svh] md:h-[85vh]" src="https://www.youtube.com/embed/R6ekjrjjDjE" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
 				</div>
 			</div>
 		</main>
